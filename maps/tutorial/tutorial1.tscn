@@ -1,0 +1,266 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://city/City.gd" type="Script" id=1]
+[ext_resource path="res://maps/Map.gd" type="Script" id=2]
+[ext_resource path="res://ui/ui.tscn" type="PackedScene" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "begin"
+length = 7.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/2:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 3 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CanvasLayer/1:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CanvasLayer/2:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 3, 3.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("CanvasLayer/3:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 7 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("CanvasLayer/3:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 7, 7.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "connect_both"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/4:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/4:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "simulate"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/5:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/5:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="GDScript" id=4]
+script/source = "extends TutorialPlayer
+
+
+func _ready():
+	hide_all()
+
+
+func _on_ui_cable_size_btn_pressed(size):
+	end()
+	play(\"connect_both\")
+
+
+func _on_Map_cable_built(cable):
+	end()
+	play(\"simulate\")
+
+"
+
+[node name="Map" type="Node2D"]
+script = ExtResource( 2 )
+description = "You will learn the basics"
+won_title = "Congratulations!"
+won_text = "You finished the first step!"
+node_costs = 0
+money = 4000
+ensure_full_maintenance = true
+
+[node name="TutorialPlayer" type="AnimationPlayer" parent="."]
+anims/begin = SubResource( 1 )
+anims/connect_both = SubResource( 2 )
+anims/simulate = SubResource( 3 )
+script = SubResource( 4 )
+
+[node name="Cities" type="Node2D" parent="."]
+show_behind_parent = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="City" type="Node2D" parent="Cities"]
+position = Vector2( 501.002, 177.001 )
+script = ExtResource( 1 )
+
+[node name="City2" type="Node2D" parent="Cities"]
+position = Vector2( 508.002, 294.001 )
+script = ExtResource( 1 )
+is_router = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="1" type="Label" parent="CanvasLayer"]
+margin_left = 581.001
+margin_top = 136.0
+margin_right = 790.001
+margin_bottom = 202.0
+text = "That is a city.
+The inhabitants are desperate for internet"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="2" type="Label" parent="CanvasLayer"]
+margin_left = 576.001
+margin_top = 272.0
+margin_right = 785.001
+margin_bottom = 338.0
+text = "That is a top level node. It is the source of your internet"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="3" type="Label" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -225.0
+margin_top = -132.0
+margin_right = -61.9999
+margin_bottom = -43.0
+text = "Click to select a cable size or use 1 to 5 on your keyboard"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="4" type="Label" parent="CanvasLayer"]
+margin_left = 276.0
+margin_top = 202.999
+margin_right = 439.0
+margin_bottom = 268.999
+text = "Click on both cities to connect them"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="5" type="Label" parent="CanvasLayer"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -249.0
+margin_top = -152.0
+margin_right = -101.0
+margin_bottom = -86.0
+text = "Now simulate to the next week [Spacebar]"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ui" parent="." instance=ExtResource( 3 )]
+[connection signal="cable_built" from="." to="TutorialPlayer" method="_on_Map_cable_built"]
+[connection signal="buttons_untoggled" from="ui" to="." method="_on_ui_buttons_untoggled"]
+[connection signal="cable_size_btn_pressed" from="ui" to="." method="_on_ui_cable_size_btn_pressed"]
+[connection signal="cable_size_btn_pressed" from="ui" to="TutorialPlayer" method="_on_ui_cable_size_btn_pressed"]
+[connection signal="dismantle_pressed" from="ui" to="." method="_on_ui_dismantle_pressed"]
+[connection signal="maintenance_changed" from="ui" to="." method="_on_ui_maintenance_changed"]
+[connection signal="next_level_pressed" from="ui" to="." method="_on_ui_next_level_pressed"]
+[connection signal="repair_pressed" from="ui" to="." method="_on_ui_repair_pressed"]
+[connection signal="retry_pressed" from="ui" to="." method="_on_ui_retry_pressed"]
+[connection signal="retry_pressed" from="ui" to="TutorialPlayer" method="_on_ui_retry_pressed"]
+[connection signal="start_level_pressed" from="ui" to="TutorialPlayer" method="_on_ui_start_level_pressed"]
+[connection signal="timer_pressed" from="ui" to="." method="_on_ui_timer_pressed"]

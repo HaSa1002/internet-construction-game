@@ -1,0 +1,244 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://ui/Resources.gd" type="Script" id=1]
+[ext_resource path="res://ui/controls/money.png" type="Texture" id=2]
+[ext_resource path="res://ui/controls/maintenance.png" type="Texture" id=3]
+[ext_resource path="res://ui/controls/income.png" type="Texture" id=4]
+[ext_resource path="res://ui/controls/connected.png" type="Texture" id=5]
+[ext_resource path="res://ui/panel.tres" type="StyleBox" id=6]
+[ext_resource path="res://font/slider.tres" type="DynamicFont" id=7]
+
+[sub_resource type="StyleBoxLine" id=1]
+color = Color( 0, 0.00784314, 0.545098, 0.305882 )
+grow_begin = 21.0
+grow_end = 21.0
+
+[node name="PanelContainer" type="PanelContainer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -238.0
+margin_right = 238.0
+margin_bottom = 38.0
+mouse_filter = 1
+custom_styles/panel = ExtResource( 6 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 8.0
+margin_top = 4.0
+margin_right = 468.0
+margin_bottom = 30.0
+
+[node name="Resources" type="HBoxContainer" parent="HBoxContainer"]
+margin_right = 460.0
+margin_bottom = 24.0
+custom_constants/separation = 35
+alignment = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Resources"]
+margin_left = 4.0
+margin_right = 103.0
+margin_bottom = 24.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Resources/HBoxContainer"]
+margin_right = 24.0
+margin_bottom = 24.0
+grow_vertical = 2
+rect_min_size = Vector2( 24, 24 )
+texture = ExtResource( 2 )
+
+[node name="Money" type="Label" parent="HBoxContainer/Resources/HBoxContainer"]
+margin_left = 28.0
+margin_top = 2.0
+margin_right = 99.0
+margin_bottom = 22.0
+text = "20000 €"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="HBoxContainer/Resources"]
+margin_left = 138.0
+margin_right = 231.0
+margin_bottom = 24.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Resources/HBoxContainer2"]
+margin_right = 24.0
+margin_bottom = 24.0
+grow_vertical = 2
+rect_min_size = Vector2( 24, 24 )
+texture = ExtResource( 3 )
+
+[node name="Maintenance" type="Label" parent="HBoxContainer/Resources/HBoxContainer2"]
+margin_left = 28.0
+margin_top = 2.0
+margin_right = 93.0
+margin_bottom = 22.0
+text = "20 €/W"
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="HBoxContainer/Resources"]
+margin_left = 266.0
+margin_right = 359.0
+margin_bottom = 24.0
+mouse_filter = 0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Resources/HBoxContainer3"]
+margin_right = 24.0
+margin_bottom = 24.0
+grow_vertical = 2
+rect_min_size = Vector2( 24, 24 )
+texture = ExtResource( 4 )
+
+[node name="Income" type="Label" parent="HBoxContainer/Resources/HBoxContainer3"]
+margin_left = 28.0
+margin_top = 2.0
+margin_right = 93.0
+margin_bottom = 22.0
+text = "30 €/W"
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="HBoxContainer/Resources"]
+margin_left = 394.0
+margin_right = 455.0
+margin_bottom = 24.0
+mouse_filter = 0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="HBoxContainer/Resources/HBoxContainer4"]
+margin_right = 24.0
+margin_bottom = 24.0
+grow_vertical = 2
+rect_min_size = Vector2( 24, 24 )
+texture = ExtResource( 5 )
+
+[node name="Coverage" type="Label" parent="HBoxContainer/Resources/HBoxContainer4"]
+margin_left = 28.0
+margin_top = 2.0
+margin_right = 61.0
+margin_bottom = 22.0
+text = "0 %"
+
+[node name="Wartung" type="VBoxContainer" parent="HBoxContainer"]
+visible = false
+margin_top = 28.0
+margin_right = 462.0
+margin_bottom = 128.0
+rect_min_size = Vector2( 0, 100 )
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer/Wartung"]
+margin_right = 462.0
+margin_bottom = 4.0
+custom_styles/separator = SubResource( 1 )
+
+[node name="Label" type="Label" parent="HBoxContainer/Wartung"]
+margin_top = 8.0
+margin_right = 462.0
+margin_bottom = 28.0
+text = "Maintenance Factor"
+align = 1
+
+[node name="HSlider" type="HSlider" parent="HBoxContainer/Wartung"]
+margin_top = 32.0
+margin_right = 462.0
+margin_bottom = 48.0
+min_value = 0.5
+max_value = 1.5
+step = 0.1
+value = 1.0
+allow_greater = true
+allow_lesser = true
+tick_count = 11
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/Wartung"]
+margin_top = 52.0
+margin_right = 462.0
+margin_bottom = 69.0
+custom_constants/separation = 22
+alignment = 1
+
+[node name="Label" type="Label" parent="HBoxContainer/Wartung/HBoxContainer"]
+margin_right = 22.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 7 )
+text = "0.5"
+
+[node name="Label2" type="Label" parent="HBoxContainer/Wartung/HBoxContainer"]
+margin_left = 44.0
+margin_right = 66.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 7 )
+text = "0.6"
+
+[node name="Label3" type="Label" parent="HBoxContainer/Wartung/HBoxContainer"]
+margin_left = 88.0
+margin_right = 110.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 7 )
+text = "0.7"
+
+[node name="Label4" type="Label" parent="HBoxContainer/Wartung/HBoxContainer"]
+margin_left = 132.0
+margin_right = 154.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 7 )
+text = "0.8"
+
+[node name="Label5" type="Label" parent="HBoxContainer/Wartung/HBoxContainer"]
+margin_left = 176.0
+margin_right = 198.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 7 )
+text = "0.9"
+
+[node name="Label6" type="Label" parent="HBoxContainer/Wartung/HBoxContainer"]
+margin_left = 220.0
+margin_right = 242.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 7 )
+text = "1.0"
+
+[node name="Label7" type="Label" parent="HBoxContainer/Wartung/HBoxContainer"]
+margin_left = 264.0
+margin_right = 286.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 7 )
+text = "1.1"
+
+[node name="Label8" type="Label" parent="HBoxContainer/Wartung/HBoxContainer"]
+margin_left = 308.0
+margin_right = 330.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 7 )
+text = "1.2"
+
+[node name="Label9" type="Label" parent="HBoxContainer/Wartung/HBoxContainer"]
+margin_left = 352.0
+margin_right = 374.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 7 )
+text = "1.3"
+
+[node name="Label10" type="Label" parent="HBoxContainer/Wartung/HBoxContainer"]
+margin_left = 396.0
+margin_right = 418.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 7 )
+text = "1.4"
+
+[node name="Label11" type="Label" parent="HBoxContainer/Wartung/HBoxContainer"]
+margin_left = 440.0
+margin_right = 462.0
+margin_bottom = 17.0
+custom_fonts/font = ExtResource( 7 )
+text = "1.5"
+[connection signal="mouse_exited" from="." to="." method="_on_PanelContainer_mouse_exited"]
+[connection signal="mouse_entered" from="HBoxContainer/Resources/HBoxContainer2" to="." method="_on_HBoxContainer2_mouse_entered"]
+[connection signal="value_changed" from="HBoxContainer/Wartung/HSlider" to="." method="_on_HSlider_value_changed"]

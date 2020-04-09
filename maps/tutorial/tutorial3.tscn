@@ -1,0 +1,461 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://city/City.gd" type="Script" id=1]
+[ext_resource path="res://maps/Map.gd" type="Script" id=2]
+[ext_resource path="res://ui/ui.tscn" type="PackedScene" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "begin"
+length = 9.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/1:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/1:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CanvasLayer/2:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 3 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CanvasLayer/2:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 3, 3.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("CanvasLayer/3:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 6 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("CanvasLayer/3:modulate")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 6, 6.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("CanvasLayer/4:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 9 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("CanvasLayer/4:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 9, 9.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "explain"
+length = 3.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/6:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/6:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CanvasLayer/7:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 3 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CanvasLayer/7:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 3, 3.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "mfac"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/9:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/9:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=4]
+resource_name = "next_week"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/5:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/5:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="Animation" id=5]
+resource_name = "repair"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath("CanvasLayer/8:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("CanvasLayer/8:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
+[sub_resource type="GDScript" id=6]
+script/source = "extends TutorialPlayer
+
+var first_next_day := true
+var played_next_week := false
+
+func _on_ui_cable_size_btn_pressed(btn):
+	end()
+
+
+func _on_ui_timer_pressed():
+	if !first_next_day:
+		return
+	hide_all()
+	$\"..\".maintenance_factor = 0.5
+	$\"..\".maintenance *= -1
+	$\"..\".ensure_full_maintenance = true
+	play(\"explain\")
+	first_next_day = false
+
+
+func _on_Map_cable_built(cable):
+	end()
+	play(\"next_week\")
+
+
+func _on_ui_repair_pressed():
+	end()
+	play(\"repair\")
+
+
+func _on_Map_cable_repaired(cable):
+	end()
+	play(\"mfac\")
+
+
+func _on_ui_maintenance_changed(value):
+	if first_next_day:
+		return
+	if played_next_week:
+		return
+	play(\"next_week\")
+	played_next_week = true
+"
+
+[node name="Map" type="Node2D"]
+script = ExtResource( 2 )
+level = 3
+description = "You will learn about money, maintenance, and income"
+won_title = "Congratulations!"
+won_text = "You learnt how to maintain your cables and repair them when they failed"
+node_costs = 0
+money = 6000
+maintenance_factor = -3.0
+
+[node name="TutorialPlayer" type="AnimationPlayer" parent="."]
+anims/begin = SubResource( 1 )
+anims/explain = SubResource( 2 )
+anims/mfac = SubResource( 7 )
+anims/next_week = SubResource( 4 )
+anims/repair = SubResource( 5 )
+script = SubResource( 6 )
+
+[node name="Cities" type="Node2D" parent="."]
+show_behind_parent = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="City3" type="Node2D" parent="Cities"]
+position = Vector2( 293.977, 275.847 )
+script = ExtResource( 1 )
+inhabitants = 937
+
+[node name="City2" type="Node2D" parent="Cities"]
+position = Vector2( 642.318, 348.137 )
+script = ExtResource( 1 )
+inhabitants = 161
+is_router = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="1" type="Label" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -333.0
+margin_top = 48.0
+margin_right = -114.0
+margin_bottom = 137.0
+text = "You always start with a limited amount of cash. Don't let it drop below 0 € or you will lose."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="2" type="Label" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -71.0004
+margin_top = 51.9996
+margin_right = 138.0
+margin_bottom = 141.0
+text = "The maintenance costs are calculated during the simulation."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="3" type="Label" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 174.001
+margin_top = 49.9996
+margin_right = 383.001
+margin_bottom = 139.0
+text = "The income and coverage are calculated at the end. Citizens don't pay when they have no connection."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="4" type="Label" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -101.0
+margin_top = -75.0
+margin_right = 108.0
+margin_bottom = -53.0
+text = "Go ahead and build one."
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="5" type="Label" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = 297.0
+margin_top = -113.0
+margin_right = 438.0
+margin_bottom = -70.0
+text = "Advance to the next week"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="6" type="Label" parent="CanvasLayer"]
+margin_left = 467.0
+margin_top = 244.0
+margin_right = 676.0
+margin_bottom = 296.0
+text = "Uuups. It broke. Let's start with the repair"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="7" type="Label" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -123.0
+margin_top = -66.0
+margin_right = 129.0
+margin_bottom = -40.0
+text = "Press the repair button or [R]"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="8" type="Label" parent="CanvasLayer"]
+margin_left = 378.002
+margin_top = 355.001
+margin_right = 602.002
+margin_bottom = 444.001
+text = "When you hover over the cable you can check the repair costs in the top bar. Click on the cable to fix it"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="9" type="Label" parent="CanvasLayer"]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = 283.003
+margin_top = 10.0
+margin_right = 507.003
+margin_bottom = 237.0
+text = "In order to decrease the break chance of your cables, you can adjust the maintenance costs. Higher maintenance costs result in a lower break chance. Click on the maintenance info in the top bar and adjust the factor with the slider"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ui" parent="." instance=ExtResource( 3 )]
+[connection signal="cable_built" from="." to="TutorialPlayer" method="_on_Map_cable_built"]
+[connection signal="cable_repaired" from="." to="TutorialPlayer" method="_on_Map_cable_repaired"]
+[connection signal="buttons_untoggled" from="ui" to="." method="_on_ui_buttons_untoggled"]
+[connection signal="cable_size_btn_pressed" from="ui" to="." method="_on_ui_cable_size_btn_pressed"]
+[connection signal="cable_size_btn_pressed" from="ui" to="TutorialPlayer" method="_on_ui_cable_size_btn_pressed"]
+[connection signal="dismantle_pressed" from="ui" to="." method="_on_ui_dismantle_pressed"]
+[connection signal="maintenance_changed" from="ui" to="." method="_on_ui_maintenance_changed"]
+[connection signal="maintenance_changed" from="ui" to="TutorialPlayer" method="_on_ui_maintenance_changed"]
+[connection signal="next_level_pressed" from="ui" to="." method="_on_ui_next_level_pressed"]
+[connection signal="repair_pressed" from="ui" to="." method="_on_ui_repair_pressed"]
+[connection signal="repair_pressed" from="ui" to="TutorialPlayer" method="_on_ui_repair_pressed"]
+[connection signal="retry_pressed" from="ui" to="." method="_on_ui_retry_pressed"]
+[connection signal="retry_pressed" from="ui" to="TutorialPlayer" method="_on_ui_retry_pressed"]
+[connection signal="start_level_pressed" from="ui" to="TutorialPlayer" method="_on_ui_start_level_pressed"]
+[connection signal="timer_pressed" from="ui" to="." method="_on_ui_timer_pressed"]
+[connection signal="timer_pressed" from="ui" to="TutorialPlayer" method="_on_ui_timer_pressed"]

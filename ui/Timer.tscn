@@ -1,0 +1,46 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://ui/Timer.gd" type="Script" id=1]
+[ext_resource path="res://ui/btn_timer_normal.tres" type="StyleBox" id=2]
+[ext_resource path="res://ui/btn_timer_hover.tres" type="StyleBox" id=3]
+[ext_resource path="res://ui/btn_timer_pressed.tres" type="StyleBox" id=4]
+[ext_resource path="res://ui/btn_timer_focus.tres" type="StyleBox" id=5]
+[ext_resource path="res://ui/btn_timer_disabled.tres" type="StyleBox" id=6]
+
+[sub_resource type="InputEventAction" id=4]
+action = "next_week"
+
+[sub_resource type="ShortCut" id=5]
+shortcut = SubResource( 4 )
+
+[node name="Timer" type="Button"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -165.0
+margin_top = -78.0
+custom_styles/hover = ExtResource( 3 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 5 )
+custom_styles/disabled = ExtResource( 6 )
+custom_styles/normal = ExtResource( 2 )
+shortcut = SubResource( 5 )
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -0.250343
+margin_bottom = -0.250343
+text = "W1 0/5
+Next Week"
+align = 1
+valign = 1
+__meta__ = {
+"_edit_lock_": true,
+"_edit_use_anchors_": false
+}
