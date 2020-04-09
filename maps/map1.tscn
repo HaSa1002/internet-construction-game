@@ -17,61 +17,131 @@ __meta__ = {
 position = Vector2( 31.0001, 34.0001 )
 script = ExtResource( 1 )
 inhabitants = 171
+connected_inhabitants = 0
+scale_factor = 100.0
+coverage = 0.0
+is_router = false
+city_id = ""
 
 [node name="City2" type="Node2D" parent="Cities"]
 position = Vector2( 50.0002, 126 )
 script = ExtResource( 1 )
+inhabitants = 100
+connected_inhabitants = 0
+scale_factor = 100.0
+coverage = 0.0
+is_router = false
+city_id = ""
 
 [node name="City3" type="Node2D" parent="Cities"]
 position = Vector2( 144, 272.001 )
 script = ExtResource( 1 )
 inhabitants = 529
+connected_inhabitants = 0
+scale_factor = 100.0
+coverage = 0.0
+is_router = false
+city_id = ""
 
 [node name="City4" type="Node2D" parent="Cities"]
 position = Vector2( 348.001, 199.001 )
 script = ExtResource( 1 )
 inhabitants = 360
+connected_inhabitants = 0
+scale_factor = 100.0
+coverage = 0.0
+is_router = false
+city_id = ""
 
 [node name="City5" type="Node2D" parent="Cities"]
 position = Vector2( 725.002, 405.001 )
 script = ExtResource( 1 )
+inhabitants = 100
+connected_inhabitants = 0
+scale_factor = 100.0
+coverage = 0.0
+is_router = false
+city_id = ""
 
 [node name="City6" type="Node2D" parent="Cities"]
 position = Vector2( 793.002, 219.001 )
 script = ExtResource( 1 )
 inhabitants = 268
+connected_inhabitants = 0
+scale_factor = 100.0
+coverage = 0.0
+is_router = false
+city_id = ""
 
 [node name="City7" type="Node2D" parent="Cities"]
 position = Vector2( 579.002, 317.001 )
 script = ExtResource( 1 )
 inhabitants = 1000
+connected_inhabitants = 0
+scale_factor = 100.0
+coverage = 0.0
+is_router = false
+city_id = ""
 
 [node name="City8" type="Node2D" parent="Cities"]
 position = Vector2( 546.002, 122 )
 script = ExtResource( 1 )
+inhabitants = 100
+connected_inhabitants = 0
+scale_factor = 100.0
+coverage = 0.0
 is_router = true
+city_id = ""
 
 [node name="City9" type="Node2D" parent="Cities"]
 position = Vector2( 327.001, 407.001 )
 script = ExtResource( 1 )
+inhabitants = 100
+connected_inhabitants = 0
+scale_factor = 100.0
+coverage = 0.0
+is_router = false
+city_id = ""
 
 [node name="City10" type="Node2D" parent="Cities"]
 position = Vector2( 137.001, 480.001 )
 script = ExtResource( 1 )
+inhabitants = 100
+connected_inhabitants = 0
+scale_factor = 100.0
+coverage = 0.0
 is_router = true
+city_id = ""
 
 [node name="City11" type="Node2D" parent="Cities"]
 position = Vector2( 557.002, 517.002 )
 script = ExtResource( 1 )
 inhabitants = 297
+connected_inhabitants = 0
+scale_factor = 100.0
+coverage = 0.0
+is_router = false
+city_id = ""
 
 [node name="City12" type="Node2D" parent="Cities"]
 position = Vector2( 900.003, 529.002 )
 script = ExtResource( 1 )
+inhabitants = 100
+connected_inhabitants = 0
+scale_factor = 100.0
+coverage = 0.0
+is_router = false
+city_id = ""
 
 [node name="City13" type="Node2D" parent="Cities"]
 position = Vector2( 887.003, 74.0003 )
 script = ExtResource( 1 )
+inhabitants = 100
+connected_inhabitants = 0
+scale_factor = 100.0
+coverage = 0.0
+is_router = false
+city_id = ""
 
 [node name="ui" parent="." instance=ExtResource( 3 )]
 [connection signal="buttons_untoggled" from="ui" to="." method="_on_ui_buttons_untoggled"]
