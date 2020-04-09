@@ -239,7 +239,7 @@ func _on_Cable_clicked(cable : Cable):
 			self.money -= cable.get_build_costs() / 2
 			emit_signal("cable_repaired", cable)
 		return
-	if connecting:
+	if connecting && connect_city == null:
 		if cable.get_upgrade_costs(connect_size) <= money:
 			self.money -= cable.upgrade(connect_size)
 			emit_signal("cable_upgraded", cable)
