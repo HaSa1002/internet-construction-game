@@ -95,7 +95,7 @@ static func calc_usage_color(workload : int, size : int) -> Color:
 	if wl <= 0.5:
 		return Color(2*wl, 1, 0)
 	elif wl > 1:
-		return Color(size/float(workload),size/float(workload),size/float(workload))
+		return Color.darkgray
 	else:
 		return Color(1, 1-wl, 0)
 
