@@ -1,0 +1,17 @@
+
+# Godot-specific ignores
+.import/
+export.cfg
+export_presets.cfg
+
+# Mono-specific ignores
+.mono/
+data_*/
+
+# We currently don't want to have GDNative Plugins in the repo
+bin/
+*.gdnlib
+*.gdns
+
+# No builds, please
+build/
