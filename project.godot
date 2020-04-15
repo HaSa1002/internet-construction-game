@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Node2D",
 "class": "Cable",
 "language": "GDScript",
-"path": "res://connection/Cable.gd"
+"path": "res://cable/Cable.gd"
 }, {
 "base": "Node2D",
 "class": "City",
@@ -27,7 +27,7 @@ _global_script_classes=[ {
 "base": "Object",
 "class": "Line",
 "language": "GDScript",
-"path": "res://connection/Line.gd"
+"path": "res://cable/Line.gd"
 }, {
 "base": "Node2D",
 "class": "Map",
@@ -99,7 +99,7 @@ cancel_cable={
 }
 select={
 "deadzone": 0.5,
-"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
+"events": [ Object(InputEventMouseButton,"resource_local_to_scene":false,"resource_name":"","device":-1,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"button_mask":0,"position":Vector2( 0, 0 ),"global_position":Vector2( 0, 0 ),"factor":1.0,"button_index":1,"pressed":false,"doubleclick":false,"script":null)
  ]
 }
 place_multiple={
@@ -159,7 +159,12 @@ pause={
  ]
 }
 
+[locale]
+
+locale_filter=[ 0, [  ] ]
+
 [rendering]
 
+threads/thread_model=2
 environment/default_clear_color=Color( 0.301961, 0.301961, 0.301961, 1 )
 environment/default_environment="res://default_env.tres"

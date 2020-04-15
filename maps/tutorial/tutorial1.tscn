@@ -219,7 +219,7 @@ margin_left = -225.0
 margin_top = -132.0
 margin_right = -61.9999
 margin_bottom = -43.0
-text = "Click to select a cable size or use 1 to 5 on your keyboard"
+text = "Click to select a cable size or use [1] to [5] on your keyboard"
 autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false

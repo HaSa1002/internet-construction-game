@@ -56,7 +56,7 @@ tracks/3/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=2]
 resource_name = "explain"
 length = 9.5
 tracks/0/type = "value"
@@ -156,7 +156,7 @@ tracks/7/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=3]
 resource_name = "hint_xs"
 length = 0.5
 tracks/0/type = "value"
@@ -184,7 +184,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=4]
 resource_name = "next_week"
 length = 0.5
 tracks/0/type = "value"
@@ -212,7 +212,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=5]
 resource_name = "upgrade"
 length = 0.5
 tracks/0/type = "value"
@@ -240,7 +240,7 @@ tracks/1/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="GDScript" id=4]
+[sub_resource type="GDScript" id=6]
 script/source = "extends TutorialPlayer
 
 var second_try := false
@@ -285,11 +285,11 @@ ensure_full_maintenance = true
 
 [node name="TutorialPlayer" type="AnimationPlayer" parent="."]
 anims/begin = SubResource( 1 )
-anims/explain = SubResource( 7 )
-anims/hint_xs = SubResource( 5 )
-anims/next_week = SubResource( 6 )
-anims/upgrade = SubResource( 8 )
-script = SubResource( 4 )
+anims/explain = SubResource( 2 )
+anims/hint_xs = SubResource( 3 )
+anims/next_week = SubResource( 4 )
+anims/upgrade = SubResource( 5 )
+script = SubResource( 6 )
 
 [node name="Cities" type="Node2D" parent="."]
 show_behind_parent = true
@@ -438,14 +438,14 @@ __meta__ = {
 [connection signal="cable_built" from="." to="TutorialPlayer" method="_on_Map_cable_built"]
 [connection signal="cable_upgraded" from="." to="TutorialPlayer" method="_on_Map_cable_upgraded"]
 [connection signal="buttons_untoggled" from="ui" to="." method="_on_ui_buttons_untoggled"]
-[connection signal="cable_size_btn_pressed" from="ui" to="TutorialPlayer" method="_on_ui_cable_size_btn_pressed"]
 [connection signal="cable_size_btn_pressed" from="ui" to="." method="_on_ui_cable_size_btn_pressed"]
+[connection signal="cable_size_btn_pressed" from="ui" to="TutorialPlayer" method="_on_ui_cable_size_btn_pressed"]
 [connection signal="dismantle_pressed" from="ui" to="." method="_on_ui_dismantle_pressed"]
 [connection signal="maintenance_changed" from="ui" to="." method="_on_ui_maintenance_changed"]
 [connection signal="next_level_pressed" from="ui" to="." method="_on_ui_next_level_pressed"]
 [connection signal="repair_pressed" from="ui" to="." method="_on_ui_repair_pressed"]
-[connection signal="retry_pressed" from="ui" to="TutorialPlayer" method="_on_ui_retry_pressed"]
 [connection signal="retry_pressed" from="ui" to="." method="_on_ui_retry_pressed"]
+[connection signal="retry_pressed" from="ui" to="TutorialPlayer" method="_on_ui_retry_pressed"]
 [connection signal="start_level_pressed" from="ui" to="TutorialPlayer" method="_on_ui_start_level_pressed"]
-[connection signal="timer_pressed" from="ui" to="TutorialPlayer" method="_on_ui_timer_pressed"]
 [connection signal="timer_pressed" from="ui" to="." method="_on_ui_timer_pressed"]
+[connection signal="timer_pressed" from="ui" to="TutorialPlayer" method="_on_ui_timer_pressed"]

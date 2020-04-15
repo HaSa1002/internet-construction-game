@@ -156,7 +156,7 @@ tracks/3/keys = {
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
 }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=3]
 resource_name = "mfac"
 length = 0.5
 tracks/0/type = "value"
@@ -254,7 +254,7 @@ func _on_ui_timer_pressed():
 	if !first_next_day:
 		return
 	hide_all()
-	$\"..\".maintenance_factor = 0.5
+	$\"..\".maintenance_factor = 1
 	$\"..\".maintenance *= -1
 	$\"..\".ensure_full_maintenance = true
 	play(\"explain\")
@@ -298,7 +298,7 @@ maintenance_factor = -3.0
 [node name="TutorialPlayer" type="AnimationPlayer" parent="."]
 anims/begin = SubResource( 1 )
 anims/explain = SubResource( 2 )
-anims/mfac = SubResource( 7 )
+anims/mfac = SubResource( 3 )
 anims/next_week = SubResource( 4 )
 anims/repair = SubResource( 5 )
 script = SubResource( 6 )
@@ -312,7 +312,7 @@ __meta__ = {
 [node name="City3" type="Node2D" parent="Cities"]
 position = Vector2( 293.977, 275.847 )
 script = ExtResource( 1 )
-inhabitants = 937
+inhabitants = 250
 
 [node name="City2" type="Node2D" parent="Cities"]
 position = Vector2( 642.318, 348.137 )

@@ -1,0 +1,58 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://city/City.gd" type="Script" id=1]
+[ext_resource path="res://maps/Map.gd" type="Script" id=2]
+[ext_resource path="res://ui/ui.tscn" type="PackedScene" id=3]
+
+[node name="Map" type="Node2D"]
+script = ExtResource( 2 )
+level = 7
+description = "It's always nice when big cities are located near nodes."
+won_title = "It worked"
+won_text = "however... see the next level"
+node_costs_fixed = false
+victory_weeks = 4
+money = 10000
+
+[node name="Cities" type="Node2D" parent="."]
+show_behind_parent = true
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="City3" type="Node2D" parent="Cities"]
+position = Vector2( 493.001, 202.001 )
+script = ExtResource( 1 )
+inhabitants = 1000
+
+[node name="City8" type="Node2D" parent="Cities"]
+position = Vector2( 348.001, 320.002 )
+script = ExtResource( 1 )
+inhabitants = 254
+
+[node name="City4" type="Node2D" parent="Cities"]
+position = Vector2( 506.002, 433.002 )
+script = ExtResource( 1 )
+inhabitants = 1000
+
+[node name="City5" type="Node2D" parent="Cities"]
+position = Vector2( 667.002, 420.001 )
+script = ExtResource( 1 )
+inhabitants = 247
+is_router = true
+
+[node name="City6" type="Node2D" parent="Cities"]
+position = Vector2( 671.002, 231 )
+script = ExtResource( 1 )
+inhabitants = 247
+is_router = true
+
+[node name="ui" parent="." instance=ExtResource( 3 )]
+[connection signal="buttons_untoggled" from="ui" to="." method="_on_ui_buttons_untoggled"]
+[connection signal="cable_size_btn_pressed" from="ui" to="." method="_on_ui_cable_size_btn_pressed"]
+[connection signal="dismantle_pressed" from="ui" to="." method="_on_ui_dismantle_pressed"]
+[connection signal="maintenance_changed" from="ui" to="." method="_on_ui_maintenance_changed"]
+[connection signal="next_level_pressed" from="ui" to="." method="_on_ui_next_level_pressed"]
+[connection signal="repair_pressed" from="ui" to="." method="_on_ui_repair_pressed"]
+[connection signal="retry_pressed" from="ui" to="." method="_on_ui_retry_pressed"]
+[connection signal="timer_pressed" from="ui" to="." method="_on_ui_timer_pressed"]

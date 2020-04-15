@@ -23,22 +23,22 @@ func _ready() -> void:
 	add_child(area)
 	area.add_child(shape)
 	shape.shape = circle
-	circle.radius = inhabitants/float(max_inhabitants) * scale_factor
+	circle.radius = get_radius()
 	pass
 
 
 func _draw() -> void:
 	if is_router:
-		draw_circle(Vector2.ZERO, 5+(inhabitants/float(max_inhabitants) * scale_factor), Color.blueviolet)
-		draw_circle(Vector2.ZERO, inhabitants/float(max_inhabitants) * scale_factor, Color.white)
+		draw_circle(Vector2.ZERO, get_radius() + 5, Color.blueviolet)
+		draw_circle(Vector2.ZERO, get_radius(), Color.white)
 	else:
-		draw_circle(Vector2.ZERO, inhabitants/float(max_inhabitants) * scale_factor, Color(coverage,coverage,coverage))
+		draw_circle(Vector2.ZERO, get_radius(), Color(coverage,coverage,coverage))
 
 
 func _unhandled_input(_event) -> void:
 	if not Input.is_action_just_released("select"):
 		return
-	if abs(position.distance_to(get_global_mouse_position())) < inhabitants/float(max_inhabitants) * scale_factor:
+	if abs(position.distance_to(get_global_mouse_position())) < get_radius():
 		emit_signal("clicked", self)
 	pass
 
@@ -52,9 +52,13 @@ func get_unconnected_inhabitants() -> int:
 	return inhabitants - connected_inhabitants
 
 
+func get_radius():
+	return inhabitants/float(max_inhabitants) * scale_factor
+
+
 func _set_inhabitants(val : int) -> void:
 	inhabitants = val
-	circle.radius = inhabitants/float(max_inhabitants) * scale_factor
+	circle.radius = get_radius()
 	update()
 
 
@@ -66,7 +70,7 @@ func _set_connected_inhabitants(val : int) -> void:
 
 func _set_scale_factor(val : float) -> void:
 	scale_factor = val
-	circle.radius = inhabitants/float(max_inhabitants) * scale_factor
+	circle.radius = get_radius()
 	update()
 
 

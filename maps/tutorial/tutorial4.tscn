@@ -77,7 +77,7 @@ func _on_ui_timer_pressed():
 [node name="Map" type="Node2D"]
 script = ExtResource( 3 )
 level = 4
-description = "You need to survive two weeks"
+description = "You need to survive two weeks. It's called interNET. [Do joke in german with Internet(z)]"
 won_title = "Congratulations!"
 won_text = "You learnt how to win"
 node_costs = 0

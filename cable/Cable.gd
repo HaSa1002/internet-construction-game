@@ -19,9 +19,10 @@ export(Color) var color := Color.green setget _set_color
 export(float) var line_width : float= 2.0 setget _set_width
 export(bool) var curve_antialised := true setget _set_antialised
 export var workload := 0 setget _set_workload
+export var not_simulated := true
 export var broken := false setget set_broken
 export var to_position := Vector2(0,0)
-export var debug_draw_rect := false
+export var debug_draw_rect := true
 
 var from_city = null
 var to_city = null
@@ -29,7 +30,7 @@ var to_city = null
 
 var d_tl := Vector2(0,0)
 var d_br := Vector2(0,0)
-var d_r := Rect2(0,0,0,0)
+var calbe_rect := Rect2(0,0,0,0)
 
 
 func _ready():
@@ -46,8 +47,11 @@ func _unhandled_input(_event):
 
 func _draw():
 	if debug_draw_rect:
-		draw_rect(d_r, Color.brown,false,3, true)
+		draw_rect(calbe_rect, Color.brown,false,3, true)
 	if from_city == null || to_city == null:
+		return
+	if not_simulated:
+		draw_line(Vector2(0,0), to_position, Color.darkblue, line_width, curve_antialised)
 		return
 	if broken:
 		draw_line(Vector2(0,0), to_position, Color.darkgray, line_width, curve_antialised)
@@ -60,14 +64,16 @@ func make(from : City, to : City, _size : int):
 	to_city = to
 	size = _size
 	line_width = size / 100.0
-	var p1 = to_city.position
-	position = from_city.position
+	var p1 = to.position
+	position = from.position
 	if (p1 - position).length_squared() < 0:
 		position = p1
-		p1 = from_city.position
+		p1 = from.position
 	to_position = Vector2((p1 - position).length(), 0)
 	rotation = (p1 - position).angle()
-	_recalc()
+	not_simulated = true
+	calbe_rect = Rect2(Vector2(0,-line_width), to_position+Vector2(0,2*line_width))
+	update()
 	return self
 
 
@@ -76,7 +82,17 @@ func upgrade(to_size : int) -> int:
 		return 0
 	self.size = to_size
 	self.broken = false
+	not_simulated = true
+	calbe_rect = Rect2(Vector2(0,-line_width), to_position+Vector2(0,2*line_width))
+	update()
 	return get_upgrade_costs(to_size)
+
+
+func repair() -> int:
+	broken = false
+	not_simulated = true
+	update()
+	return get_build_costs() / 2
 
 
 func get_upgrade_costs(to_size) -> int:
@@ -188,11 +204,7 @@ func get_free_capacity() -> int:
 
 
 func on_line(point : Vector2) -> bool:
-	var r = Rect2(Vector2(0,-line_width), to_position+Vector2(0,2*line_width))
-	d_r = r
-	if debug_draw_rect:
-		update()
-	return r.has_point(point)
+	return calbe_rect.has_point(point)
 
 
 func _set_size(val : int):
@@ -203,25 +215,23 @@ func _set_size(val : int):
 
 func _set_detail(val : float):
 	detail = val
-	_recalc()
+	update()
 
 func _set_color(val : Color):
 	color = val
-	_recalc()
+	update()
 
 func _set_width(val : float):
 	line_width = val
-	_recalc()
+	update()
 
 func _set_antialised(val : bool):
 	curve_antialised = val
-	_recalc()
-
-func _recalc():
 	update()
 
 
 func _set_workload(val : int):
 	workload = val
+	not_simulated = false
 	color = calc_usage_color(val, size)
-	_recalc()
+	update()

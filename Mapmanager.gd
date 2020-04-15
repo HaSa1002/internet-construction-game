@@ -32,6 +32,8 @@ func level_path() -> String:
 	match current_level:
 		1,2,3,4,5,6,7,8,9:
 			return "res://maps/tutorial/tutorial%d.tscn" % current_level
+		10,11:
+			return "res://maps/map%d.tscn" % current_level
 	return ""
 
 

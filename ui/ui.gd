@@ -11,11 +11,11 @@ signal timer_pressed
 signal buttons_untoggled
 
 
-var money
-var maintenance
-var maintenance_factor
-var income
-var coverage
+var money := 0
+var maintenance := 0
+var maintenance_factor := 1.0
+var income := 0
+var coverage := 0.0
 var build_info_displayed := false
 
 

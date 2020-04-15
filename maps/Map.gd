@@ -16,6 +16,7 @@ var ready = false
 var build_line_color := Color.blue
 var on_cable := 0
 var moved := 0
+var block_build_events := false
 
 export var level : int = 1
 export var level_name := ""
@@ -43,10 +44,13 @@ onready var cables := Node2D.new()
 onready var simulation := Simulation.new($Cities)
 
 func _ready() -> void:
-	set_process(false)
 	ready = true
 	cables.show_behind_parent = true
+	cables.name = "Cables"
+	var cities = $Cities
+	remove_child(cities)
 	add_child(cables)
+	add_child(cities)
 	for _city in $Cities.get_children():
 		var city := _city as City
 		city.connect("clicked", self, "_city_clicked")
@@ -69,17 +73,16 @@ func _unhandled_input(_event):
 
 
 func _process(delta):
+	block_build_events = false
 	var oc = on_cable > moved
 	if !oc && connecting:
 		$ui.set_build_info(Cable.get_build_cost(connect_size), int(Cable.get_maintenance_cost(connect_size)*maintenance_factor))
 		on_cable = 0
 		moved = 0
-		set_process(false)
 	elif !oc:
 		$ui.reset_build_info()
 		on_cable = 0
 		moved = 0
-		set_process(false)
 
 
 func _draw():
@@ -198,6 +201,9 @@ func _set_coverage(val : float):
 func _city_clicked(city : City) -> void:
 	if !connecting:
 		return
+	if block_build_events:
+		return
+	block_build_events = true
 	if connect_city == null:
 		connect_city = city
 		$ui.show_size_hint(city.get_unconnected_inhabitants())
@@ -230,13 +236,15 @@ func _city_clicked(city : City) -> void:
 
 
 func _on_Cable_clicked(cable : Cable):
+	if block_build_events:
+		return
+	block_build_events = true
 	if dismantling:
 		cable.queue_free()
 		return
 	if repairing && cable.broken:
 		if money >= cable.get_build_costs() / 2:
-			cable.broken = false
-			self.money -= cable.get_build_costs() / 2
+			self.money -= cable.repair()
 			emit_signal("cable_repaired", cable)
 		return
 	if connecting && connect_city == null:
@@ -258,7 +266,7 @@ func _on_Cable_hovered(cable : Cable):
 	if repairing && cable.broken:
 		$ui.set_build_info(cable.get_build_costs() / 2,int(cable.get_maintenance_costs() * maintenance_factor))
 		return
-	if connecting: # Upgrade
+	if connecting && connect_city == null: # Upgrade
 		$ui.set_build_info(cable.get_upgrade_costs(connect_size),
 				int((Cable.get_maintenance_cost(connect_size) - cable.get_maintenance_costs()) * maintenance_factor))
 		$ui.show_size_hint(cable.workload)
@@ -301,9 +309,12 @@ func _on_ui_timer_pressed():
 
 
 func _on_ui_cable_size_btn_pressed(size):
-	reset_interaction()
+	dismantling = false
+	repairing = false
+	$ui.reset_size_hint()
 	connecting = true
 	connect_size = size
+	update()
 
 
 
