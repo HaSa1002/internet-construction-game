@@ -22,7 +22,7 @@ export var workload := 0 setget _set_workload
 export var not_simulated := true
 export var broken := false setget set_broken
 export var to_position := Vector2(0,0)
-export var debug_draw_rect := true
+export var debug_draw_rect := false
 
 var from_city = null
 var to_city = null

@@ -12,7 +12,7 @@ description = "I never solved that one though... Well, I did it once."
 won_title = "New Title"
 won_text = "You are a webmaster now, but only until I update the game"
 node_costs_fixed = false
-money = 35000
+money = 40000
 maintenance = 0
 income = 0
 

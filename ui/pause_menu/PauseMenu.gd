@@ -18,7 +18,7 @@ func _on_Continue_pressed():
 
 
 func _on_Quit_pressed():
-	get_tree().quit(0)
+	SceneChanger.quit()
 
 
 func _on_Restart_pressed():
@@ -30,3 +30,8 @@ func _on_Restart_pressed():
 func _on_MainMenu_pressed():
 	hide()
 	SceneChanger.main_menu()
+
+
+func _on_LevelSelection_pressed():
+	hide()
+	SceneChanger.level_selection()

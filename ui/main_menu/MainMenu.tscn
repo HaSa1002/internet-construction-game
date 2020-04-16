@@ -72,7 +72,7 @@ custom_styles/disabled = ExtResource( 8 )
 custom_styles/normal = ExtResource( 4 )
 text = "New Game"
 
-[node name="Levelselect" type="Button" parent="Panel/VBoxContainer"]
+[node name="Levelselection" type="Button" parent="Panel/VBoxContainer"]
 margin_top = 130.0
 margin_right = 250.0
 margin_bottom = 180.0
@@ -81,7 +81,7 @@ custom_styles/pressed = ExtResource( 6 )
 custom_styles/focus = ExtResource( 7 )
 custom_styles/disabled = ExtResource( 8 )
 custom_styles/normal = ExtResource( 4 )
-text = "Level Select"
+text = "Level Selection"
 
 [node name="Settings" type="Button" parent="Panel/VBoxContainer"]
 margin_top = 184.0
@@ -124,4 +124,5 @@ __meta__ = {
 }
 [connection signal="pressed" from="Panel/VBoxContainer/Continue" to="." method="_on_Continue_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/NewGame" to="." method="_on_NewGame_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/Levelselection" to="." method="_on_Levelselection_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]

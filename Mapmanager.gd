@@ -1,4 +1,7 @@
+class_name Mapmanager
 extends Node2D
+
+const DEBUG_HIGHEST_LEVEL := 11
 
 export var current_level := 1 setget _set_level
 
@@ -7,6 +10,8 @@ var map : Map
 
 
 func _ready():
+	if load_save():
+		return
 	pass
 
 func _process(_delta):
@@ -26,7 +31,7 @@ func _process(_delta):
 	add_child(map)
 # warning-ignore:return_value_discarded
 	map.connect("next_level_requested", self, "_on_next_level_requested")
-	
+	save()
 
 func level_path() -> String:
 	match current_level:
@@ -40,6 +45,26 @@ func level_path() -> String:
 func new_game():
 	current_level = 1
 	set_process(true)
+
+
+func save():
+	var file = ConfigFile.new()
+	if file.load("user://saves/save.cfg") != OK:
+		print("Saving failed")
+		return
+	var val = file.get_value("progress", "profile1", 1) # Implement unlocking and last_level for level select and continue
+	file.set_value("progress", "profile1", current_level if true || current_level > val else val)
+	file.save("user://saves/save.cfg")
+	pass
+
+
+func load_save() -> bool:
+	var file = ConfigFile.new()
+	if file.load("user://saves/save.cfg") != OK:
+		print("Loading failed")
+		return false
+	self.current_level = file.get_value("progress", "profile1", 1)
+	return true
 
 
 func _set_level(val : int):

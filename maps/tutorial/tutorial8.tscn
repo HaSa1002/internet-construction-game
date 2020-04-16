@@ -7,7 +7,7 @@
 [node name="Map" type="Node2D"]
 script = ExtResource( 2 )
 level = 8
-description = "It would be nice if big cities are close to nodes. Bigger cities are calculated first."
+description = "It would be nice if big cities are close to nodes. Try to bounce high traffic over small cities."
 won_title = "Made it!"
 won_text = "You can ease your life with the maintenance factor"
 node_costs_fixed = false
@@ -28,7 +28,7 @@ inhabitants = 1000
 [node name="City8" type="Node2D" parent="Cities"]
 position = Vector2( 655.002, 318.002 )
 script = ExtResource( 1 )
-inhabitants = 386
+inhabitants = 414
 
 [node name="City9" type="Node2D" parent="Cities"]
 position = Vector2( 696.002, 257.002 )

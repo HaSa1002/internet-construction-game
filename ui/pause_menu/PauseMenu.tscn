@@ -99,7 +99,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LevelSelect" type="Button" parent="Panel/VBoxContainer"]
+[node name="LevelSelection" type="Button" parent="Panel/VBoxContainer"]
 margin_top = 149.0
 margin_right = 370.0
 margin_bottom = 210.0
@@ -109,7 +109,7 @@ custom_styles/focus = ExtResource( 7 )
 custom_styles/disabled = ExtResource( 11 )
 custom_styles/normal = ExtResource( 8 )
 custom_fonts/font = ExtResource( 9 )
-text = "Level Select"
+text = "Level Selection"
 
 [node name="Settings" type="Button" parent="Panel/VBoxContainer"]
 margin_top = 220.0
@@ -167,5 +167,6 @@ __meta__ = {
 }
 [connection signal="pressed" from="Panel/VBoxContainer/Continue" to="." method="_on_Continue_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/Restart" to="." method="_on_Restart_pressed"]
+[connection signal="pressed" from="Panel/VBoxContainer/LevelSelection" to="." method="_on_LevelSelection_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/MainMenu" to="." method="_on_MainMenu_pressed"]
 [connection signal="pressed" from="Panel/VBoxContainer/Quit" to="." method="_on_Quit_pressed"]

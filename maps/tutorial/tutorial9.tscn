@@ -61,7 +61,7 @@ inhabitants = 445
 is_router = true
 
 [node name="City10" type="Node2D" parent="Cities"]
-position = Vector2( 607.002, 278.002 )
+position = Vector2( 581.002, 269.002 )
 script = ExtResource( 1 )
 
 [node name="City4" type="Node2D" parent="Cities"]
