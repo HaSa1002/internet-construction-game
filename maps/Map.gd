@@ -117,6 +117,7 @@ func reset_state():
 	self.income = r_income
 	self.coverage = r_coverage
 	yield(get_tree(), "idle_frame")
+	yield(get_tree(), "idle_frame")
 	simulate()
 	self.money = r_money
 	weeks_with_full_coverage = 0
