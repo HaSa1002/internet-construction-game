@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://ui/game_over/panel_full.tres" type="StyleBox" id=1]
 [ext_resource path="res://ui/game_over/white.png" type="Texture" id=2]
@@ -9,6 +9,14 @@
 [ext_resource path="res://ui/pause_menu/btn_focus.tres" type="StyleBox" id=7]
 [ext_resource path="res://ui/controls/btn_disabled.tres" type="StyleBox" id=8]
 [ext_resource path="res://ui/main_menu/MainMenu.gd" type="Script" id=9]
+[ext_resource path="res://ui/background.tscn" type="PackedScene" id=10]
+[ext_resource path="res://font/Xolonium-Regular.ttf" type="DynamicFontData" id=11]
+
+[sub_resource type="DynamicFont" id=1]
+size = 60
+use_mipmaps = true
+use_filter = true
+font_data = ExtResource( 11 )
 
 [node name="MainMenu" type="TextureRect"]
 material = ExtResource( 3 )
@@ -25,6 +33,23 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="CanvasLayer" parent="." instance=ExtResource( 10 )]
+
+[node name="Label3" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -95.0
+margin_top = -36.5
+margin_right = 423.0
+margin_bottom = 36.5
+custom_fonts/font = SubResource( 1 )
+text = "CityNet Connect"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Panel" type="Panel" parent="."]
 anchor_bottom = 1.0
 margin_left = 60.0
@@ -32,10 +57,16 @@ margin_top = 60.0
 margin_right = 340.0
 margin_bottom = -60.0
 custom_styles/panel = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="Label" type="Label" parent="Panel"]
-margin_right = 40.0
-margin_bottom = 20.0
+margin_left = 74.2383
+margin_top = 38.7812
+margin_right = 210.238
+margin_bottom = 58.7812
+text = "CityNet Connect"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Panel"]
 anchor_top = 0.40625

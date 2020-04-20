@@ -19,7 +19,6 @@ var _leveldetail : LevelSelectDetail = preload("res://levelselect/levelselect_de
 
 # onready variables
 
-
 func _ready():
 	for i in range(10):
 		var btn : Button = get_node("Self/%d"%i)

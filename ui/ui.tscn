@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://ui/ui.gd" type="Script" id=1]
 [ext_resource path="res://ui/game_over/GameOver.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://ui/controls/Connections.tscn" type="PackedScene" id=5]
 [ext_resource path="res://ui/Resources.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ui/pause_menu/PauseMenu.tscn" type="PackedScene" id=7]
+[ext_resource path="res://ui/background.tscn" type="PackedScene" id=8]
 
 [sub_resource type="StyleBoxFlat" id=1]
 draw_center = false
@@ -126,6 +127,8 @@ material = SubResource( 9 )
 
 [node name="PauseMenu" parent="." instance=ExtResource( 7 )]
 visible = false
+
+[node name="CanvasLayer" parent="." instance=ExtResource( 8 )]
 [connection signal="cable_size_btn_pressed" from="ConnectionControls" to="." method="_on_ConnectionControls_cable_size_btn_pressed"]
 [connection signal="dismantle_pressed" from="ConnectionControls" to="." method="_on_ConnectionControls_dismantle_pressed"]
 [connection signal="repair_pressed" from="ConnectionControls" to="." method="_on_ConnectionControls_repair_pressed"]
