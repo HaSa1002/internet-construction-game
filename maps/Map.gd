@@ -214,7 +214,9 @@ func _city_clicked(city : City) -> void:
 	var c : Cable = _find_cable(connect_city, city)
 	if c != null:
 		if c.get_upgrade_costs(connect_size) <= money:
+			var size_before = c.size
 			self.money -= c.upgrade(connect_size)
+			self.maintenance += (c.get_maintenance_costs() - c.get_maintenance_cost(size_before)) * maintenance_factor
 			emit_signal("cable_upgraded", c)
 		return
 	if Cable.get_build_cost(connect_size) > money:
@@ -228,6 +230,7 @@ func _city_clicked(city : City) -> void:
 	c.connect("cable_hovered",self, "_on_Cable_hovered")
 	cables.add_child(c)
 	self.money -= c.get_build_costs()
+	self.maintenance += c.get_maintenance_costs() * maintenance_factor
 	if Input.is_action_pressed("place_multiple"):
 		connect_city = city
 	else:
@@ -250,7 +253,9 @@ func _on_Cable_clicked(cable : Cable):
 		return
 	if connecting && connect_city == null:
 		if cable.get_upgrade_costs(connect_size) <= money:
+			var size_before = cable.size
 			self.money -= cable.upgrade(connect_size)
+			self.maintenance += (cable.get_maintenance_costs() - cable.get_maintenance_cost(size_before)) * maintenance_factor
 			emit_signal("cable_upgraded", cable)
 		return
 

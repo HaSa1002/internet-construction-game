@@ -1,4 +1,3 @@
-#tool
 class_name Ressources
 extends PanelContainer
 
@@ -9,27 +8,22 @@ var mouse_wartung := false
 
 
 
-
-
 func set_build_info(cost : int, _maintenance : int, money : int):
-	var mny := $HBoxContainer/Resources/HBoxContainer/Money
+	var mny := $HBoxContainer/BuildInfo/Resources/HBoxContainer/Money
 	mny.text = "%d €" % cost
-	$HBoxContainer/Resources/HBoxContainer2/Maintenance.text = "%d €/W" % int(round(_maintenance * $HBoxContainer/Wartung/HSlider.value))
-	$HBoxContainer/Resources/HBoxContainer3/Income.text = "-"
-	$HBoxContainer/Resources/HBoxContainer4/Coverage.text = "-"
+	$HBoxContainer/BuildInfo/Resources/HBoxContainer2/Maintenance.text = "%d €/W" % int(round(_maintenance * $HBoxContainer/Wartung/HSlider.value))
+	$HBoxContainer/BuildInfo/Resources/HBoxContainer3/Income.text = "-"
+	$HBoxContainer/BuildInfo/Resources/HBoxContainer4/Coverage.text = "-"
 	if cost <= money:
 		mny.add_color_override("font_color",Color.green)
 	else:
 		mny.add_color_override("font_color",Color.red)
+	$HBoxContainer/BuildInfo.show()
 
 
-func reset_build_info(money, maintenance, income, coverage):
-	var mny := $HBoxContainer/Resources/HBoxContainer/Money
-	mny.text = "%d €" % money
-	$HBoxContainer/Resources/HBoxContainer2/Maintenance.text = "%d €/W" % maintenance
-	$HBoxContainer/Resources/HBoxContainer3/Income.text = "%d €/W" % income
-	$HBoxContainer/Resources/HBoxContainer4/Coverage.text = "%d %%" % round(coverage * 100)
-	mny.add_color_override("font_color",Color.white)
+func reset_build_info():
+	set_size(Vector2(0,0))
+	$HBoxContainer/BuildInfo.hide()
 
 
 func set_money(val : int):

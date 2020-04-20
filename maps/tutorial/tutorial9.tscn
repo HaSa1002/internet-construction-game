@@ -7,9 +7,9 @@
 [node name="Map" type="Node2D"]
 script = ExtResource( 2 )
 level = 9
-description = "Some levels are so huge, that you only need to maintain full coverage for one week. At least you have enough money"
+description = "Some levels are so huge, that you only need to maintain full coverage for one week. For now you have enough money"
 won_title = "Congratulations"
-won_text = "You are offically an assistent to the webmasters assistant. You can be released on real problems now."
+won_text = "You are offically an assistent to the webmasters assistant. You can be released onto real problems now."
 node_costs_fixed = false
 money = 40000
 
@@ -58,6 +58,7 @@ script = ExtResource( 1 )
 position = Vector2( 475.001, 190.002 )
 script = ExtResource( 1 )
 inhabitants = 445
+coverage = 1.0
 is_router = true
 
 [node name="City10" type="Node2D" parent="Cities"]
@@ -78,6 +79,7 @@ inhabitants = 1000
 position = Vector2( 820.003, 310 )
 script = ExtResource( 1 )
 inhabitants = 267
+coverage = 1.0
 is_router = true
 
 [node name="ui" parent="." instance=ExtResource( 3 )]

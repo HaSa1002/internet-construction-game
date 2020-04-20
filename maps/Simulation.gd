@@ -24,6 +24,7 @@ func simulate(_cables : Array, mfac : float, ensure_full_maintenance : bool):
 		if city.is_router:
 			router.push_back(city)
 		city.connected_inhabitants = 0
+		city.est_connected_inhabitants = 0
 	var break_chance := _route_death_chance(mfac)
 	for cnt in cables.duplicate():
 		cnt.workload = 0
@@ -34,6 +35,7 @@ func simulate(_cables : Array, mfac : float, ensure_full_maintenance : bool):
 			cnt.set_broken()
 	
 	# Städte nach Größe sortieren
+	# TODO: Städte nach Nähe zum Node sortieren und auslasten
 	cities.sort_custom(City, "sort_inhabitants")
 	
 	# Verbindungen von Städten zu Router finden

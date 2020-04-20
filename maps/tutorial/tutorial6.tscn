@@ -53,12 +53,14 @@ inhabitants = 360
 position = Vector2( 502.001, 437.001 )
 script = ExtResource( 1 )
 inhabitants = 247
+coverage = 1.0
 is_router = true
 
 [node name="City6" type="Node2D" parent="Cities"]
 position = Vector2( 506.001, 248 )
 script = ExtResource( 1 )
 inhabitants = 247
+coverage = 1.0
 is_router = true
 
 [node name="ui" parent="." instance=ExtResource( 3 )]

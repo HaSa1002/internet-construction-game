@@ -47,6 +47,7 @@ inhabitants = 1000
 position = Vector2( 820.003, 310 )
 script = ExtResource( 1 )
 inhabitants = 267
+coverage = 1.0
 is_router = true
 
 [node name="ui" parent="." instance=ExtResource( 3 )]

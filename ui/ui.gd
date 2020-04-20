@@ -12,11 +12,6 @@ signal buttons_untoggled
 
 
 var money := 0
-var maintenance := 0
-var maintenance_factor := 1.0
-var income := 0
-var coverage := 0.0
-var build_info_displayed := false
 
 
 func reset_ui():
@@ -63,13 +58,11 @@ func start_level_custom(level : String, description : String):
 
 
 func set_build_info(cost : int, maintenance : int):
-	build_info_displayed = true
 	$Resources.set_build_info(cost, maintenance, money)
 
 
 func reset_build_info():
-	build_info_displayed = false
-	$Resources.reset_build_info(money, maintenance, income, coverage)
+	$Resources.reset_build_info()
 
 
 func untoggle():
@@ -79,36 +72,22 @@ func untoggle():
 
 func set_money(val : int):
 	money = val
-	if build_info_displayed:
-		return
 	$Resources.set_money(val)
 
 
 func set_maintenance(val : int):
-	maintenance = val
-	if build_info_displayed:
-		return
 	$Resources.set_maintenance(val)
 
 
 func set_maintenance_factor(val : float):
-	maintenance_factor = val
-	if build_info_displayed:
-		return
 	$Resources.set_maintenance_factor(val)
 
 
 func set_income(val : int):
-	income = val
-	if build_info_displayed:
-		return
 	$Resources.set_income(val)
 
 
 func set_coverage(val : float):#
-	coverage = val
-	if build_info_displayed:
-		return
 	$Resources.set_coverage(val)
 
 
@@ -141,7 +120,6 @@ func _on_restart_pressed():
 
 
 func _on_Resources_maintenance_changed(value):
-	maintenance_factor = value
 	emit_signal("maintenance_changed", value)
 
 

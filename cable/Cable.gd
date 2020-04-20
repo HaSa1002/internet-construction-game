@@ -73,6 +73,7 @@ func make(from : City, to : City, _size : int):
 	rotation = (p1 - position).angle()
 	not_simulated = true
 	calbe_rect = Rect2(Vector2(0,-line_width), to_position+Vector2(0,2*line_width))
+	notify_city_connection(size)
 	update()
 	return self
 
@@ -80,17 +81,28 @@ func make(from : City, to : City, _size : int):
 func upgrade(to_size : int) -> int:
 	if size == to_size:
 		return 0
-	self.size = to_size
 	self.broken = false
-	not_simulated = true
 	calbe_rect = Rect2(Vector2(0,-line_width), to_position+Vector2(0,2*line_width))
+	var upgrade_cost = get_upgrade_costs(to_size)
+	not_simulated = true
+	notify_city_connection(to_size - size)
+	self.size = to_size
 	update()
-	return get_upgrade_costs(to_size)
+	return upgrade_cost
+
+
+func notify_city_connection(gain : int):
+	printt(size, gain)
+	if from_city.coverage < 1:
+		from_city.est_connected_inhabitants += gain
+	else:
+		to_city.est_connected_inhabitants += gain
 
 
 func repair() -> int:
 	broken = false
 	not_simulated = true
+	notify_city_connection(size)
 	update()
 	return get_build_costs() / 2
 
