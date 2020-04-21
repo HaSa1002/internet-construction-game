@@ -6,7 +6,7 @@
 
 [sub_resource type="Animation" id=1]
 resource_name = "begin"
-length = 0.5
+length = 3.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("CanvasLayer/1:visible")
 tracks/0/interp = 1
@@ -27,6 +27,30 @@ tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
 "times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("CanvasLayer/3:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 2.5 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("CanvasLayer/3:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 2.5, 3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
@@ -114,12 +138,14 @@ inhabitants = 1000
 position = Vector2( 620.318, 284.138 )
 script = ExtResource( 2 )
 inhabitants = 161
+coverage = 1.0
 is_router = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
 
 [node name="1" type="Label" parent="CanvasLayer"]
+modulate = Color( 1, 1, 1, 0 )
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
@@ -128,7 +154,7 @@ margin_left = -259.0
 margin_top = -206.0
 margin_right = -9.0
 margin_bottom = -83.9998
-text = "In order to win the game, you need to provide full coverage over the stated time. The timer shows how close you are to win"
+text = "In order to win the game, you need to provide full coverage over the stated time. The timer shows how close you are to win."
 autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
@@ -144,6 +170,24 @@ margin_top = -352.0
 margin_right = -20.0
 margin_bottom = -240.0
 text = "You should connect all cities with the node and ensure the cables are big enough! If you run out of money, you lose"
+autowrap = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="3" type="Label" parent="CanvasLayer"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -168.0
+margin_top = -63.0
+margin_right = 175.0
+margin_bottom = -34.0
+text = "Use [Shift] to place multiple lines!"
+align = 1
+valign = 1
 autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
