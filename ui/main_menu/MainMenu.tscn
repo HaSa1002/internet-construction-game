@@ -1,8 +1,6 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://ui/game_over/panel_full.tres" type="StyleBox" id=1]
-[ext_resource path="res://ui/game_over/white.png" type="Texture" id=2]
-[ext_resource path="res://ui/game_over/Blur.tres" type="Material" id=3]
 [ext_resource path="res://ui/pause_menu/btn_normal.tres" type="StyleBox" id=4]
 [ext_resource path="res://ui/controls/btn_hover.tres" type="StyleBox" id=5]
 [ext_resource path="res://ui/controls/btn_pressed.tres" type="StyleBox" id=6]
@@ -19,14 +17,12 @@ use_filter = true
 font_data = ExtResource( 11 )
 
 [node name="MainMenu" type="TextureRect"]
-material = ExtResource( 3 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 margin_top = -0.773773
 margin_bottom = -0.773804
 size_flags_horizontal = 2
 size_flags_vertical = 2
-texture = ExtResource( 2 )
 expand = true
 script = ExtResource( 9 )
 __meta__ = {
