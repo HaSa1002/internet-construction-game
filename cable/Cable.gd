@@ -84,9 +84,9 @@ func upgrade(to_size : int) -> int:
 	self.broken = false
 	calbe_rect = Rect2(Vector2(0,-line_width), to_position+Vector2(0,2*line_width))
 	var upgrade_cost = get_upgrade_costs(to_size)
-	not_simulated = true
 	notify_city_connection(to_size - size)
 	self.size = to_size
+	not_simulated = true
 	update()
 	return upgrade_cost
 
