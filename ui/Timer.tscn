@@ -7,11 +7,11 @@
 [ext_resource path="res://ui/btn_timer_focus.tres" type="StyleBox" id=5]
 [ext_resource path="res://ui/btn_timer_disabled.tres" type="StyleBox" id=6]
 
-[sub_resource type="InputEventAction" id=4]
+[sub_resource type="InputEventAction" id=1]
 action = "next_week"
 
-[sub_resource type="ShortCut" id=5]
-shortcut = SubResource( 4 )
+[sub_resource type="ShortCut" id=2]
+shortcut = SubResource( 1 )
 
 [node name="Timer" type="Button"]
 anchor_left = 1.0
@@ -20,12 +20,13 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 margin_left = -165.0
 margin_top = -78.0
+hint_tooltip = "Proceed to next week and simulate"
 custom_styles/hover = ExtResource( 3 )
 custom_styles/pressed = ExtResource( 4 )
 custom_styles/focus = ExtResource( 5 )
 custom_styles/disabled = ExtResource( 6 )
 custom_styles/normal = ExtResource( 2 )
-shortcut = SubResource( 5 )
+shortcut = SubResource( 2 )
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
