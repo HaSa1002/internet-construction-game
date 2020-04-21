@@ -5,7 +5,7 @@
 [ext_resource path="res://mapmanager/Blueprint.material" type="Material" id=3]
 
 [node name="CanvasLayer" type="CanvasLayer"]
-layer = -1
+layer = -2
 
 [node name="TextureRect" type="TextureRect" parent="."]
 material = ExtResource( 3 )

@@ -53,6 +53,7 @@ inhabitants = 1000
 [node name="City8" type="Node2D" parent="Cities"]
 position = Vector2( 546.002, 122 )
 script = ExtResource( 3 )
+coverage = 1.0
 is_router = true
 
 [node name="City9" type="Node2D" parent="Cities"]
@@ -62,6 +63,7 @@ script = ExtResource( 3 )
 [node name="City10" type="Node2D" parent="Cities"]
 position = Vector2( 137.001, 480.001 )
 script = ExtResource( 3 )
+coverage = 1.0
 is_router = true
 
 [node name="City11" type="Node2D" parent="Cities"]

@@ -4,6 +4,7 @@ signal cable_size_btn_pressed(size)
 signal maintenance_changed(value)
 signal dismantle_pressed
 signal repair_pressed
+signal repair_all_pressed
 signal retry_pressed
 signal next_level_pressed
 signal start_level_pressed
@@ -115,7 +116,7 @@ func _on_GameOver_next_level_pressed():
 
 
 func _on_restart_pressed():
-	reset_ui()
+	untoggle()
 	emit_signal("retry_pressed")
 
 
@@ -124,7 +125,7 @@ func _on_Resources_maintenance_changed(value):
 
 
 func _on_Timer_pressed():
-	reset_ui()
+	untoggle()
 	$Timer.show_simulate()
 	yield(get_tree(), "idle_frame")
 	yield(get_tree(), "idle_frame")
@@ -139,3 +140,8 @@ func _on_StartLevel_start_level_pressed():
 func _on_ConnectionControls_untoggle():
 	untoggle()
 	emit_signal("buttons_untoggled")
+
+
+func _on_ConnectionControls_repair_all():
+	emit_signal("repair_all_pressed")
+	untoggle()

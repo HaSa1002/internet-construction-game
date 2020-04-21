@@ -3,16 +3,46 @@ extends PanelContainer
 signal cable_size_btn_pressed(size)
 signal dismantle_pressed
 signal repair_pressed
+signal repair_all
 signal untoggle
 
+export var repair_all_length := 0.5
+
 var last_btn = 0
+var _repair_duration := 0.0
 
 onready var xs := $ConnectionControls/XS
 onready var s := $ConnectionControls/S
 onready var m := $ConnectionControls/M
 onready var l := $ConnectionControls/L
 onready var xl := $ConnectionControls/XL
+onready var repair := $ConnectionControls/Repair
 
+
+func _ready():
+	set_process(false)
+
+
+func _process(delta):
+	_repair_duration += delta
+	if _repair_duration < repair_all_length:
+		repair.self_modulate = Color((repair_all_length-_repair_duration)/repair_all_length, 
+				1.0, (repair_all_length-_repair_duration)/repair_all_length)
+	else:
+		repair.self_modulate = Color(0.0,1.0,0.0)
+	set_process(false)
+
+
+func _unhandled_input(event):
+	if Input.is_action_pressed("repair"):
+		set_process(true)
+		return
+	if Input.is_action_just_released("repair"):
+		if _repair_duration >= repair_all_length:
+			emit_signal("repair_all")
+			unpress_btns()
+		_repair_duration = 0
+		repair.self_modulate = Color.white
 
 
 func check_untoggle(btn : int) -> bool:

@@ -60,9 +60,7 @@ func _gui_input(_event):
 
 
 func _input(_event):
-	if mouse_wartung:
-		return
-	if !mouse_wartung && Input.is_action_pressed("select"):
+	if Input.is_action_pressed("select"):
 		return
 	_on_PanelContainer_mouse_exited()
 

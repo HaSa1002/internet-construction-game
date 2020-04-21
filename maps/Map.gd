@@ -53,7 +53,8 @@ func _ready() -> void:
 	add_child(cities)
 	for _city in $Cities.get_children():
 		var city := _city as City
-		city.connect("clicked", self, "_city_clicked")
+		city.connect("clicked", self, "_on_city_clicked")
+	$ui.connect("repair_all_pressed", self, "_on_ui_repair_all_pressed")
 	reset_state()
 	
 
@@ -156,6 +157,14 @@ func _find_cable(from : City, to : City):
 	return null
 
 
+func _repair_cable(cable : Cable) -> bool:
+	if money < cable.get_build_costs() / 2:
+		return false
+	self.money -= cable.repair()
+	emit_signal("cable_repaired", cable)
+	return true
+
+
 func _deny_build():
 	build_line_color = Color.red
 	update()
@@ -199,7 +208,7 @@ func _set_coverage(val : float):
 	$ui.set_coverage(val)
 
 
-func _city_clicked(city : City) -> void:
+func _on_city_clicked(city : City) -> void:
 	if !connecting:
 		return
 	if block_build_events:
@@ -247,9 +256,7 @@ func _on_Cable_clicked(cable : Cable):
 		cable.queue_free()
 		return
 	if repairing && cable.broken:
-		if money >= cable.get_build_costs() / 2:
-			self.money -= cable.repair()
-			emit_signal("cable_repaired", cable)
+		_repair_cable(cable)
 		return
 	if connecting && connect_city == null:
 		if cable.get_upgrade_costs(connect_size) <= money:
@@ -295,6 +302,15 @@ func _on_ui_retry_pressed():
 func _on_ui_repair_pressed():
 	reset_interaction()
 	repairing = true
+
+
+func _on_ui_repair_all_pressed():
+	reset_interaction()
+	for cable in cables.get_children():
+		if !cable.broken:
+			continue
+		if !_repair_cable(cable):
+			break
 
 
 func _on_ui_timer_pressed():

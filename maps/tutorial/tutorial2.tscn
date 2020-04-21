@@ -306,12 +306,14 @@ inhabitants = 500
 position = Vector2( 658.318, 309.137 )
 script = ExtResource( 1 )
 inhabitants = 161
+coverage = 1.0
 is_router = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
 
 [node name="1" type="Label" parent="CanvasLayer"]
+modulate = Color( 1, 1, 1, 0 )
 margin_left = 542.0
 margin_top = 156.0
 margin_right = 751.0
@@ -323,7 +325,7 @@ __meta__ = {
 }
 
 [node name="2" type="Label" parent="CanvasLayer"]
-modulate = Color( 1, 1, 1, 0 )
+modulate = Color( 1, 1, 1, 0.4 )
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
@@ -371,19 +373,19 @@ __meta__ = {
 }
 
 [node name="6" type="Label" parent="CanvasLayer"]
-visible = false
+modulate = Color( 1, 1, 1, 0 )
 margin_left = 140.998
 margin_top = 104.0
 margin_right = 325.998
 margin_bottom = 193.0
-text = "Do you notice the gray city? It is gray because it is not fully connected"
+text = "Do you notice the gray ring around the  city? It is gray because it is not fully connected"
 autowrap = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="7" type="Label" parent="CanvasLayer"]
-visible = false
+modulate = Color( 1, 1, 1, 0.2 )
 margin_left = 834.001
 margin_top = 378.001
 margin_right = 1019.0
@@ -395,7 +397,6 @@ __meta__ = {
 }
 
 [node name="8" type="Label" parent="CanvasLayer"]
-visible = false
 margin_left = 705.0
 margin_top = 53.0
 margin_right = 828.0
@@ -407,7 +408,6 @@ __meta__ = {
 }
 
 [node name="9" type="Label" parent="CanvasLayer"]
-visible = false
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5

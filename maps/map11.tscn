@@ -118,6 +118,7 @@ inhabitants = 257
 [node name="City13" type="Node2D" parent="Cities"]
 position = Vector2( 887.003, 74.0003 )
 script = ExtResource( 3 )
+coverage = 1.0
 is_router = true
 
 [node name="ui" parent="." instance=ExtResource( 1 )]

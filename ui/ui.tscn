@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://ui/ui.gd" type="Script" id=1]
 [ext_resource path="res://ui/game_over/GameOver.tscn" type="PackedScene" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://ui/Resources.tscn" type="PackedScene" id=6]
 [ext_resource path="res://ui/pause_menu/PauseMenu.tscn" type="PackedScene" id=7]
 [ext_resource path="res://ui/background.tscn" type="PackedScene" id=8]
+[ext_resource path="res://ui/coins.wav" type="AudioStream" id=9]
 
 [sub_resource type="StyleBoxFlat" id=1]
 draw_center = false
@@ -103,6 +104,7 @@ __meta__ = {
 
 [node name="ConnectionControls" parent="." instance=ExtResource( 5 )]
 margin_top = -29.0
+repair_all_length = 0.3
 
 [node name="Resources" parent="." instance=ExtResource( 6 )]
 margin_left = -239.0
@@ -129,8 +131,14 @@ material = SubResource( 9 )
 visible = false
 
 [node name="CanvasLayer" parent="." instance=ExtResource( 8 )]
+
+[node name="coins" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+mix_target = 1
+bus = "sfx"
 [connection signal="cable_size_btn_pressed" from="ConnectionControls" to="." method="_on_ConnectionControls_cable_size_btn_pressed"]
 [connection signal="dismantle_pressed" from="ConnectionControls" to="." method="_on_ConnectionControls_dismantle_pressed"]
+[connection signal="repair_all" from="ConnectionControls" to="." method="_on_ConnectionControls_repair_all"]
 [connection signal="repair_pressed" from="ConnectionControls" to="." method="_on_ConnectionControls_repair_pressed"]
 [connection signal="untoggle" from="ConnectionControls" to="." method="_on_ConnectionControls_untoggle"]
 [connection signal="maintenance_changed" from="Resources" to="." method="_on_Resources_maintenance_changed"]
