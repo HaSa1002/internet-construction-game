@@ -73,7 +73,7 @@ func untoggle():
 
 func set_money(val : int):
 	money = val
-	$coins.play()
+	#$coins.play()
 	$Resources.set_money(val)
 
 
