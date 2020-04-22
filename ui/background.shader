@@ -196,7 +196,7 @@ void fragment() {
 		}
 		if (color.b == .0) {
 			color = vec3(.0,.0,.3);
-			color += vec3(.3,.3,.2) * smoothstep(0.93, 1., 1.-distance(UV, mouse)*0.5)
+			color += vec3(.2,.2,.1) * smoothstep(0.93, 1., 1.-distance(UV, mouse)*0.5)
 		} else {
 			color += vec3(.5,.5,.4) * smoothstep(0.93, 1., 1.-distance(UV, mouse)*0.5)
 		}
