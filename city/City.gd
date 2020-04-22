@@ -31,9 +31,9 @@ func _ready() -> void:
 func _draw() -> void:
 	if is_router:
 		draw_circle(Vector2.ZERO, get_radius() + get_ring_width()+2, Color.blueviolet)
-		draw_circle(Vector2.ZERO, get_radius(), Color.white)
+		draw_circle(Vector2.ZERO, get_radius(), Color(0.8,0.8,0.8))
 	else:
-		var color := Color.white #Color(0.3,0.3,0.3) if coverage == 0 else (Color.gray if coverage < 1 else Color.white)
+		var color := Color(0.8,0.8,0.8) #if coverage == 0 else (Color.gray if coverage < 1 else Color.white)
 		draw_circle(Vector2.ZERO, get_radius(), color)
 		var end_angle = 2*PI*coverage-0.5*PI
 		draw_arc(Vector2.ZERO, get_radius() + get_ring_width(), -0.5*PI, end_angle, 40,
