@@ -9,7 +9,7 @@ func _process(delta):
 	material.set_shader_param("mouse", get_local_mouse_position()/rect_size)
 	material.set_shader_param("delta", delta)
 	#printt(get_viewport().size, get_viewport().get_mouse_position())
-	material.set_shader_param("rects", floor(get_viewport().size.x / 100.0))
+	material.set_shader_param("rects", floor(get_viewport().size.x / 150.0))
 	#material.set_shader_param("r_origin", polygon[0])
 	#material.set_shader_param("r_size", size*scale)
 	#material.set_shader_param("global_transform", global_transform)
