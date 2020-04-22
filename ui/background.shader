@@ -186,11 +186,11 @@ void fragment() {
 		float b = step(.9, p.y);
 		float l = step(.9, 1.0-p.x);
 		float _t = step(.9, 1.0-p.y);
-		color = vec3(.0,.0,.7) * l * _t;
+		color = vec3(.0,.0,.4) * l * _t;
 		if (color.b == .0) {
-			color = vec3(.0,.0,.7) * r;
+			color = vec3(.0,.0,.4) * r;
 			if (color.b == .0) {
-				color = vec3(.0,.0,.7) * b;
+				color = vec3(.0,.0,.4) * b;
 			}
 			
 		}
