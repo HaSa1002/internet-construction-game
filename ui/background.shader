@@ -177,7 +177,7 @@ float doubleGradient(float p, float start, float end, float max1, float max2) {
 void fragment() {
 	vec2 p = fract(UV*rects);
 	
-	vec3 color = vec3(.0,.0,.2);
+	vec3 color = vec3(.0,.0,.4);
 	color *= step(0.01, sin(p.x));
 	color *= step(0.01, sin(p.y));
 
@@ -186,19 +186,19 @@ void fragment() {
 		float b = step(.9, p.y);
 		float l = step(.9, 1.0-p.x);
 		float _t = step(.9, 1.0-p.y);
-		color = vec3(.0,.0,.4) * l * _t;
+		color = vec3(.0,.0,.6) * l * _t;
 		if (color.b == .0) {
-			color = vec3(.0,.0,.4) * r;
+			color = vec3(.0,.0,.6) * r;
 			if (color.b == .0) {
-				color = vec3(.0,.0,.4) * b;
+				color = vec3(.0,.0,.6) * b;
 			}
 			
 		}
 		if (color.b == .0) {
-			color = vec3(.0,.0,.3);
+			color = vec3(.0,.0,.5);
 			color += vec3(.2,.2,.1) * smoothstep(0.93, 1., 1.-distance(UV, mouse)*0.5)
 		} else {
-			color += vec3(.5,.5,.4) * smoothstep(0.93, 1., 1.-distance(UV, mouse)*0.5)
+			color += vec3(.5,.5,.5) * smoothstep(0.93, 1., 1.-distance(UV, mouse)*0.5)
 		}
 	}
 	
