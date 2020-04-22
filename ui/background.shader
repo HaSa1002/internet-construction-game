@@ -178,8 +178,8 @@ void fragment() {
 	vec2 p = fract(UV*rects);
 	
 	vec3 color = vec3(.0,.0,.2);
-	color *= step(0.02, sin(p.x));
-	color *= step(0.02, sin(p.y));
+	color *= step(0.01, sin(p.x));
+	color *= step(0.01, sin(p.y));
 
 	if (color.b == .0) {
 		float r = step(.9, p.x);
