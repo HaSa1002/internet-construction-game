@@ -1,8 +1,11 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://city/City.gd" type="Script" id=1]
 [ext_resource path="res://maps/Map.gd" type="Script" id=2]
 [ext_resource path="res://ui/ui.tscn" type="PackedScene" id=3]
+[ext_resource path="res://city/city/s.png" type="Texture" id=4]
+[ext_resource path="res://city/city/m.png" type="Texture" id=5]
+[ext_resource path="res://city/router/s.png" type="Texture" id=6]
 
 [node name="Map" type="Node2D"]
 script = ExtResource( 2 )
@@ -19,47 +22,55 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="City" type="Node2D" parent="Cities"]
-position = Vector2( 668.003, 337.001 )
+[node name="City" type="Sprite" parent="Cities"]
+position = Vector2( 672.3, 336.3 )
+texture = ExtResource( 4 )
 script = ExtResource( 1 )
-inhabitants = 206
+inhabitants = 250
 
-[node name="City2" type="Node2D" parent="Cities"]
-position = Vector2( 839.003, 200 )
+[node name="City2" type="Sprite" parent="Cities"]
+position = Vector2( 848.3, 192.3 )
+texture = ExtResource( 5 )
 script = ExtResource( 1 )
-inhabitants = 456
+inhabitants = 500
 
-[node name="City7" type="Node2D" parent="Cities"]
-position = Vector2( 835.003, 459.001 )
+[node name="City7" type="Sprite" parent="Cities"]
+position = Vector2( 848.3, 448.3 )
+texture = ExtResource( 5 )
 script = ExtResource( 1 )
-inhabitants = 411
+inhabitants = 500
 
-[node name="City3" type="Node2D" parent="Cities"]
-position = Vector2( 163, 203.001 )
+[node name="City3" type="Sprite" parent="Cities"]
+position = Vector2( 160.3, 208.3 )
+texture = ExtResource( 5 )
 script = ExtResource( 1 )
-inhabitants = 529
+inhabitants = 500
 
-[node name="City8" type="Node2D" parent="Cities"]
-position = Vector2( 158, 438.002 )
+[node name="City8" type="Sprite" parent="Cities"]
+position = Vector2( 160.3, 432.3 )
+texture = ExtResource( 5 )
 script = ExtResource( 1 )
-inhabitants = 254
+inhabitants = 500
 
-[node name="City4" type="Node2D" parent="Cities"]
-position = Vector2( 318.001, 333.002 )
+[node name="City4" type="Sprite" parent="Cities"]
+position = Vector2( 320.3, 336.3 )
+texture = ExtResource( 4 )
 script = ExtResource( 1 )
-inhabitants = 360
+inhabitants = 250
 
-[node name="City5" type="Node2D" parent="Cities"]
-position = Vector2( 502.001, 437.001 )
+[node name="City5" type="Sprite" parent="Cities"]
+position = Vector2( 512.3, 432.3 )
+texture = ExtResource( 6 )
 script = ExtResource( 1 )
-inhabitants = 247
+inhabitants = 250
 coverage = 1.0
 is_router = true
 
-[node name="City6" type="Node2D" parent="Cities"]
-position = Vector2( 506.001, 248 )
+[node name="City6" type="Sprite" parent="Cities"]
+position = Vector2( 512.3, 240.3 )
+texture = ExtResource( 6 )
 script = ExtResource( 1 )
-inhabitants = 247
+inhabitants = 250
 coverage = 1.0
 is_router = true
 

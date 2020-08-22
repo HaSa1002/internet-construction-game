@@ -1,20 +1,134 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=24 format=2]
 
 [ext_resource path="res://ui/ui.tscn" type="PackedScene" id=1]
 [ext_resource path="res://maps/Map.gd" type="Script" id=2]
 [ext_resource path="res://city/City.gd" type="Script" id=3]
+[ext_resource path="res://city/city/xl.png" type="Texture" id=4]
+[ext_resource path="res://city/city/xs.png" type="Texture" id=5]
+[ext_resource path="res://city/router/xs.png" type="Texture" id=6]
+[ext_resource path="res://city/router/m.png" type="Texture" id=7]
+[ext_resource path="res://city/city/s.png" type="Texture" id=8]
+[ext_resource path="res://city/city/m.png" type="Texture" id=9]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform float coverage;
+uniform float est_coverage;
+uniform bool is_router;
+
+const float PI = 3.14159265358979323846;
+const float TWO_PI = 6.28318530718;
+const vec3 ring_color = vec3(0.0,1.0,0.0);
+const vec3 router_color = vec3(0.9,1.0,0.9);
+
+
+
+void fragment() {
+	vec4 color = texture(TEXTURE, UV);
+	if (color.rgb == ring_color) {
+		// We are in the ring
+		if (is_router) {
+			color.rgb = router_color;
+			color.a *= sin(TIME*2.0) / 8.0 + 0.875;
+		} else {
+			bool c_coverage = coverage * 2.0 - 1.0 > atan(UV.y - .5, UV.x - .5) / PI;
+			bool c_est_coverage = est_coverage * 2.0 - 1.0 > atan(UV.y - .5, UV.x - .5) / PI;
+			color.g = float(c_coverage || !c_est_coverage);
+			color.b = float(!c_coverage);
+			color.r = float(!c_est_coverage);
+		}
+	}
+	
+	
+	COLOR = color;
+}"
+custom_defines = ""
+
+[sub_resource type="ShaderMaterial" id=2]
+shader = SubResource( 1 )
+shader_param/coverage = 0.0
+shader_param/est_coverage = 0.0
+shader_param/is_router = false
+
+[sub_resource type="ShaderMaterial" id=3]
+shader = SubResource( 1 )
+shader_param/coverage = 0.0
+shader_param/est_coverage = 0.0
+shader_param/is_router = false
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 1 )
+shader_param/coverage = 0.0
+shader_param/est_coverage = 0.0
+shader_param/is_router = false
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = SubResource( 1 )
+shader_param/coverage = 0.0
+shader_param/est_coverage = 0.0
+shader_param/is_router = false
+
+[sub_resource type="ShaderMaterial" id=6]
+shader = SubResource( 1 )
+shader_param/coverage = 0.0
+shader_param/est_coverage = 0.0
+shader_param/is_router = false
+
+[sub_resource type="ShaderMaterial" id=7]
+shader = SubResource( 1 )
+shader_param/coverage = 0.0
+shader_param/est_coverage = 0.0
+shader_param/is_router = false
+
+[sub_resource type="ShaderMaterial" id=8]
+shader = SubResource( 1 )
+shader_param/coverage = 0.0
+shader_param/est_coverage = 0.0
+shader_param/is_router = false
+
+[sub_resource type="ShaderMaterial" id=9]
+shader = SubResource( 1 )
+shader_param/coverage = 0.0
+shader_param/est_coverage = 0.0
+shader_param/is_router = true
+
+[sub_resource type="ShaderMaterial" id=10]
+shader = SubResource( 1 )
+shader_param/coverage = 0.0
+shader_param/est_coverage = 0.0
+shader_param/is_router = false
+
+[sub_resource type="ShaderMaterial" id=11]
+shader = SubResource( 1 )
+shader_param/coverage = 0.0
+shader_param/est_coverage = 0.0
+shader_param/is_router = true
+
+[sub_resource type="ShaderMaterial" id=12]
+shader = SubResource( 1 )
+shader_param/coverage = 0.0
+shader_param/est_coverage = 0.0
+shader_param/is_router = false
+
+[sub_resource type="ShaderMaterial" id=13]
+shader = SubResource( 1 )
+shader_param/coverage = 0.0
+shader_param/est_coverage = 0.0
+shader_param/is_router = false
+
+[sub_resource type="ShaderMaterial" id=14]
+shader = SubResource( 1 )
+shader_param/coverage = 0.0
+shader_param/est_coverage = 0.0
+shader_param/is_router = false
 
 [node name="Map" type="Node2D"]
 script = ExtResource( 2 )
-level = 11
-level_name = "Hell"
-description = "I never solved that one though... Well, I did it once."
-won_title = "New Title"
-won_text = "You are a webmaster now, but only until I update the game"
-node_costs_fixed = false
-money = 40000
-maintenance = 0
-income = 0
+level = 10
+level_name = "Devlevel 10"
+description = "That is my Devlevel. It's doable and the level, where I do all the testing"
+victory_weeks = 5
 
 [node name="Cities" type="Node2D" parent="."]
 show_behind_parent = true
@@ -22,106 +136,97 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="City" type="Node2D" parent="Cities"]
-position = Vector2( 106, 75.0003 )
-script = ExtResource( 3 )
-inhabitants = 171
-
-[node name="City2" type="Node2D" parent="Cities"]
-position = Vector2( 50.0002, 126 )
+[node name="City" type="Sprite" parent="Cities"]
+material = SubResource( 2 )
+position = Vector2( 64.3, 48.3 )
+texture = ExtResource( 5 )
 script = ExtResource( 3 )
 
-[node name="City3" type="Node2D" parent="Cities"]
-position = Vector2( 129.075, 393.227 )
-script = ExtResource( 3 )
-inhabitants = 710
-
-[node name="City4" type="Node2D" parent="Cities"]
-position = Vector2( 262.798, 154.606 )
-script = ExtResource( 3 )
-inhabitants = 234
-
-[node name="City5" type="Node2D" parent="Cities"]
-position = Vector2( 725.002, 405.001 )
-script = ExtResource( 3 )
-inhabitants = 573
-
-[node name="City6" type="Node2D" parent="Cities"]
-position = Vector2( 785.782, 207.268 )
-script = ExtResource( 3 )
-inhabitants = 268
-
-[node name="City7" type="Node2D" parent="Cities"]
-position = Vector2( 497.777, 272.778 )
-script = ExtResource( 3 )
-inhabitants = 479
-
-[node name="City8" type="Node2D" parent="Cities"]
-position = Vector2( 546.002, 122 )
-script = ExtResource( 3 )
-inhabitants = 143
-
-[node name="City9" type="Node2D" parent="Cities"]
-position = Vector2( 327.001, 407.001 )
+[node name="City2" type="Sprite" parent="Cities"]
+material = SubResource( 3 )
+position = Vector2( 96.3, 144.3 )
+texture = ExtResource( 5 )
 script = ExtResource( 3 )
 
-[node name="City14" type="Node2D" parent="Cities"]
-position = Vector2( 318.879, 305.018 )
+[node name="City3" type="Sprite" parent="Cities"]
+material = SubResource( 4 )
+position = Vector2( 144.3, 256.3 )
+texture = ExtResource( 9 )
 script = ExtResource( 3 )
+inhabitants = 500
 
-[node name="City15" type="Node2D" parent="Cities"]
-position = Vector2( 368.516, 216.573 )
+[node name="City4" type="Sprite" parent="Cities"]
+material = SubResource( 5 )
+position = Vector2( 352.3, 176.3 )
+texture = ExtResource( 9 )
 script = ExtResource( 3 )
+inhabitants = 500
 
-[node name="City16" type="Node2D" parent="Cities"]
-position = Vector2( 577.897, 376.316 )
+[node name="City5" type="Sprite" parent="Cities"]
+material = SubResource( 6 )
+position = Vector2( 720.3, 384.3 )
+texture = ExtResource( 8 )
 script = ExtResource( 3 )
+inhabitants = 250
 
-[node name="City17" type="Node2D" parent="Cities"]
-position = Vector2( 660.927, 247.258 )
+[node name="City6" type="Sprite" parent="Cities"]
+material = SubResource( 7 )
+position = Vector2( 784.3, 208.3 )
+texture = ExtResource( 8 )
 script = ExtResource( 3 )
+inhabitants = 250
 
-[node name="City18" type="Node2D" parent="Cities"]
-position = Vector2( 391.981, 104.662 )
+[node name="City7" type="Sprite" parent="Cities"]
+material = SubResource( 8 )
+position = Vector2( 576.3, 304.3 )
+texture = ExtResource( 4 )
 script = ExtResource( 3 )
+inhabitants = 1000
 
-[node name="City19" type="Node2D" parent="Cities"]
-position = Vector2( 139.28, 204.84 )
-script = ExtResource( 3 )
-
-[node name="City20" type="Node2D" parent="Cities"]
-position = Vector2( 872.113, 299.603 )
-script = ExtResource( 3 )
-
-[node name="City22" type="Node2D" parent="Cities"]
-position = Vector2( 961.461, 168.74 )
-script = ExtResource( 3 )
-
-[node name="City21" type="Node2D" parent="Cities"]
-position = Vector2( 747.568, 94.7347 )
-script = ExtResource( 3 )
-
-[node name="City10" type="Node2D" parent="Cities"]
-position = Vector2( 169.001, 510.001 )
-script = ExtResource( 3 )
-
-[node name="City11" type="Node2D" parent="Cities"]
-position = Vector2( 557.002, 517.002 )
-script = ExtResource( 3 )
-inhabitants = 297
-
-[node name="City12" type="Node2D" parent="Cities"]
-position = Vector2( 914.443, 446.874 )
-script = ExtResource( 3 )
-inhabitants = 257
-
-[node name="City13" type="Node2D" parent="Cities"]
-position = Vector2( 887.003, 74.0003 )
+[node name="City8" type="Sprite" parent="Cities"]
+material = SubResource( 9 )
+position = Vector2( 544.3, 112.3 )
+texture = ExtResource( 6 )
 script = ExtResource( 3 )
 coverage = 1.0
 is_router = true
 
+[node name="City9" type="Sprite" parent="Cities"]
+material = SubResource( 10 )
+position = Vector2( 320.3, 384.3 )
+texture = ExtResource( 5 )
+script = ExtResource( 3 )
+
+[node name="City10" type="Sprite" parent="Cities"]
+material = SubResource( 11 )
+position = Vector2( 128.3, 464.3 )
+texture = ExtResource( 7 )
+script = ExtResource( 3 )
+inhabitants = 500
+coverage = 1.0
+is_router = true
+
+[node name="City11" type="Sprite" parent="Cities"]
+material = SubResource( 12 )
+position = Vector2( 560.3, 496.3 )
+texture = ExtResource( 8 )
+script = ExtResource( 3 )
+inhabitants = 250
+
+[node name="City12" type="Sprite" parent="Cities"]
+material = SubResource( 13 )
+position = Vector2( 896.3, 512.3 )
+texture = ExtResource( 5 )
+script = ExtResource( 3 )
+
+[node name="City13" type="Sprite" parent="Cities"]
+material = SubResource( 14 )
+position = Vector2( 880.3, 64.3 )
+texture = ExtResource( 5 )
+script = ExtResource( 3 )
+
 [node name="ui" parent="." instance=ExtResource( 1 )]
+[connection signal="buttons_untoggled" from="ui" to="." method="_on_ui_buttons_untoggled"]
 [connection signal="cable_size_btn_pressed" from="ui" to="." method="_on_ui_cable_size_btn_pressed"]
 [connection signal="dismantle_pressed" from="ui" to="." method="_on_ui_dismantle_pressed"]
 [connection signal="maintenance_changed" from="ui" to="." method="_on_ui_maintenance_changed"]

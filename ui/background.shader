@@ -1,4 +1,5 @@
 shader_type canvas_item;
+// Add sub rects
 
 const float PI = 3.14159265358979323846;
 const float TWO_PI = 6.28318530718;
@@ -175,7 +176,8 @@ float doubleGradient(float p, float start, float end, float max1, float max2) {
 
 
 void fragment() {
-	vec2 p = fract(UV*rects);
+	vec2 p = fract(UV);
+	vec2 p2 = fract(p*4.0);
 	
 	vec3 color = vec3(.0,.0,.4);
 	color *= step(0.01, sin(p.x));
@@ -188,21 +190,30 @@ void fragment() {
 		float _t = step(.9, 1.0-p.y);
 		color = vec3(.0,.0,.6) * l * _t;
 		if (color.b == .0) {
+			//Cross
 			color = vec3(.0,.0,.6) * r;
 			if (color.b == .0) {
 				color = vec3(.0,.0,.6) * b;
 			}
-			
 		}
 		if (color.b == .0) {
+			//line and mouse_hover on line
 			color = vec3(.0,.0,.5);
-			color += vec3(.2,.2,.1) * smoothstep(0.93, 1., 1.-distance(UV, mouse)*0.5)
+			color += vec3(.2,.2,.1) * smoothstep(0.93, 1., 1.-distance(UV, mouse)*0.04)
 		} else {
-			color += vec3(.5,.5,.5) * smoothstep(0.93, 1., 1.-distance(UV, mouse)*0.5)
+			//mouse hover on cross
+			color += vec3(.5,.5,.5) * smoothstep(0.93, 1., 1.-distance(UV, mouse)*0.04)
+		}
+	} else {
+		//subrects
+		color *= step(0.05, sin(p2.x));
+		color *= step(0.05, sin(p2.y));
+		if (color.b == .0) {
+			color = vec3(.0,.0,.42);
+			color += vec3(.08,.08,.08) * smoothstep(0.93, 1., 1.-distance(UV, mouse)*0.04);
 		}
 	}
-	
-	color *= 1.-distance(UV, mouse)*0.5;
+	//color *= 1.-distance(UV, mouse)*0.05;
 	
 	COLOR = vec4(color, 1.0);
 }

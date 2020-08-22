@@ -13,7 +13,7 @@ var dismantling := false
 var repairing := false
 var weeks_with_full_coverage := 0
 var ready = false
-var build_line_color := Color.blue
+var build_line_color := Color.white
 var on_cable := 0
 var moved := 0
 var block_build_events := false
@@ -56,7 +56,6 @@ func _ready() -> void:
 		city.connect("clicked", self, "_on_city_clicked")
 	$ui.connect("repair_all_pressed", self, "_on_ui_repair_all_pressed")
 	reset_state()
-	
 
 
 func _unhandled_input(_event):
@@ -169,7 +168,7 @@ func _deny_build():
 	build_line_color = Color.red
 	update()
 	yield(get_tree().create_timer(0.3), "timeout")
-	build_line_color = Color.blue
+	build_line_color = Color.white
 	update()
 
 
@@ -227,8 +226,16 @@ func _on_city_clicked(city : City) -> void:
 			self.money -= c.upgrade(connect_size)
 			self.maintenance += (c.get_maintenance_costs() - c.get_maintenance_cost(size_before)) * maintenance_factor
 			emit_signal("cable_upgraded", c)
+			if Input.is_action_pressed("place_multiple"):
+				connect_city = city
+			else:
+				connect_city = null
+			update()
+		else:
+			_deny_build()
 		return
 	if Cable.get_build_cost(connect_size) > money:
+		_deny_build()
 		return
 	if !is_cable_valid(connect_city, city):
 		_deny_build()

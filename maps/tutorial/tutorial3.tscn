@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://city/City.gd" type="Script" id=1]
 [ext_resource path="res://maps/Map.gd" type="Script" id=2]
 [ext_resource path="res://ui/ui.tscn" type="PackedScene" id=3]
+[ext_resource path="res://city/city/s.png" type="Texture" id=4]
+[ext_resource path="res://city/router/m.png" type="Texture" id=5]
 
 [sub_resource type="Animation" id=1]
 resource_name = "begin"
@@ -309,15 +311,17 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="City3" type="Node2D" parent="Cities"]
-position = Vector2( 293.977, 275.847 )
+[node name="City3" type="Sprite" parent="Cities"]
+position = Vector2( 304.3, 272.3 )
+texture = ExtResource( 4 )
 script = ExtResource( 1 )
 inhabitants = 250
 
-[node name="City2" type="Node2D" parent="Cities"]
-position = Vector2( 642.318, 348.137 )
+[node name="City2" type="Sprite" parent="Cities"]
+position = Vector2( 640.3, 336.3 )
+texture = ExtResource( 5 )
 script = ExtResource( 1 )
-inhabitants = 161
+inhabitants = 500
 coverage = 1.0
 is_router = true
 

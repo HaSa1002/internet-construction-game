@@ -85,8 +85,14 @@ func _get_path_capacity(path : Array) -> int:
 
 
 func _use_path(path : Array, capacity):
-	for cnt in path:
-		cnt.workload += capacity
+	for cnt in range(path.size()):
+		path[cnt].workload += capacity
+		# correct the flow direction of the particles
+		if cnt + 1 < path.size():
+			path[cnt].flipped_flow = (path[cnt].from_city == path[cnt+1].from_city) || \
+					(path[cnt].from_city == path[cnt+1].to_city)
+		else:
+			path[cnt].flipped_flow = path[cnt].from_city.is_router
 
 
 func _find_paths_to_nodes(start : City, nodes : Array) -> Array:

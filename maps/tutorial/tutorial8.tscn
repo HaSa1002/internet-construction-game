@@ -1,10 +1,15 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://city/City.gd" type="Script" id=1]
 [ext_resource path="res://maps/Map.gd" type="Script" id=2]
 [ext_resource path="res://ui/ui.tscn" type="PackedScene" id=3]
+[ext_resource path="res://city/city/xl.png" type="Texture" id=4]
+[ext_resource path="res://city/city/m.png" type="Texture" id=5]
+[ext_resource path="res://city/router/s.png" type="Texture" id=6]
+[ext_resource path="res://city/city/xs.png" type="Texture" id=7]
 
 [node name="Map" type="Node2D"]
+position = Vector2( 0, -5.00003 )
 script = ExtResource( 2 )
 level = 8
 description = "It would be nice if big cities are close to nodes. Try to bounce high traffic over small cities."
@@ -20,33 +25,39 @@ __meta__ = {
 "_edit_lock_": true
 }
 
-[node name="City3" type="Node2D" parent="Cities"]
-position = Vector2( 165, 174.001 )
+[node name="City3" type="Sprite" parent="Cities"]
+position = Vector2( 192.3, 176.3 )
+texture = ExtResource( 4 )
 script = ExtResource( 1 )
 inhabitants = 1000
 
-[node name="City8" type="Node2D" parent="Cities"]
-position = Vector2( 655.002, 318.002 )
+[node name="City8" type="Sprite" parent="Cities"]
+position = Vector2( 640.3, 320.3 )
+texture = ExtResource( 5 )
 script = ExtResource( 1 )
-inhabitants = 414
+inhabitants = 500
 
-[node name="City9" type="Node2D" parent="Cities"]
-position = Vector2( 696.002, 257.002 )
-script = ExtResource( 1 )
-
-[node name="City10" type="Node2D" parent="Cities"]
-position = Vector2( 703.002, 372.002 )
+[node name="City9" type="Sprite" parent="Cities"]
+position = Vector2( 720.3, 256.3 )
+texture = ExtResource( 7 )
 script = ExtResource( 1 )
 
-[node name="City4" type="Node2D" parent="Cities"]
-position = Vector2( 180.001, 442.002 )
+[node name="City10" type="Sprite" parent="Cities"]
+position = Vector2( 720.3, 368.3 )
+texture = ExtResource( 7 )
+script = ExtResource( 1 )
+
+[node name="City4" type="Sprite" parent="Cities"]
+position = Vector2( 192.3, 432.3 )
+texture = ExtResource( 4 )
 script = ExtResource( 1 )
 inhabitants = 1000
 
-[node name="City6" type="Node2D" parent="Cities"]
-position = Vector2( 820.003, 310 )
+[node name="City6" type="Sprite" parent="Cities"]
+position = Vector2( 816.3, 320.3 )
+texture = ExtResource( 6 )
 script = ExtResource( 1 )
-inhabitants = 267
+inhabitants = 250
 coverage = 1.0
 is_router = true
 

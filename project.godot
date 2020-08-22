@@ -9,12 +9,12 @@
 config_version=4
 
 _global_script_classes=[ {
-"base": "Node2D",
+"base": "Sprite",
 "class": "Cable",
 "language": "GDScript",
 "path": "res://cable/Cable.gd"
 }, {
-"base": "Node2D",
+"base": "Sprite",
 "class": "City",
 "language": "GDScript",
 "path": "res://city/City.gd"

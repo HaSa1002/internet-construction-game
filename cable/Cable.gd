@@ -1,6 +1,6 @@
 tool
 class_name Cable
-extends Node2D
+extends Sprite
 
 signal cable_clicked(cable)
 signal cable_hovered(cable)
@@ -13,27 +13,63 @@ enum Size {
 	XL = 1250,
 }
 
+const ParticleSize = {
+	Size.XS: 2.2,
+	Size.S: 4,
+	Size.M: 5,
+	Size.L: 6,
+	Size.XL: 6,
+}
+
+const CableSize = {
+	Size.XS: 5,
+	Size.S: 7,
+	Size.M: 9.5,
+	Size.L: 12,
+	Size.XL: 14.5,
+}
+
 export(Size) var size := Size.XS setget _set_size
 export(float,0.001,1,0.001) var detail : float = 1.0 setget _set_detail #between 0 and 1
 export(Color) var color := Color.green setget _set_color
 export(float) var line_width : float= 2.0 setget _set_width
 export(bool) var curve_antialised := true setget _set_antialised
 export var workload := 0 setget _set_workload
-export var not_simulated := true
+export var not_simulated := true setget _set_simulated
 export var broken := false setget set_broken
 export var to_position := Vector2(0,0)
-export var debug_draw_rect := false
+export var flipped_flow := false setget _set_flipped_flow
+export var debug_draw_rect := false # Todo: Draw in separate Node
+
+# Todos: Offset center considering the seeable cable
+# Todos: Fix Cable On Click and resize
 
 var from_city = null
 var to_city = null
+var particles := Particles2D.new()
 
 
 var d_tl := Vector2(0,0)
 var d_br := Vector2(0,0)
 var calbe_rect := Rect2(0,0,0,0)
 
+func _init():
+	texture = preload("res://mapmanager/blank.png")
+	material = preload("res://cable/CableMaterial.tres").duplicate()
+	(material as ShaderMaterial).set_shader_param("size", 0.7)
+	offset.y = -0.5
+	centered = false
+	
+	# Set up Particles
+	particles.process_material = preload("res://cable/CableParticles.tres")
+	particles.show_behind_parent = true
+	particles.local_coords = false
+	particles.preprocess = 2
+	particles.emitting = false
+
 
 func _ready():
+	add_child(particles)
 	pass
 
 
@@ -48,10 +84,11 @@ func _unhandled_input(_event):
 func _draw():
 	if debug_draw_rect:
 		draw_rect(calbe_rect, Color.brown,false,3, true)
+	return
 	if from_city == null || to_city == null:
 		return
 	if not_simulated:
-		draw_line(Vector2(0,0), to_position, Color.darkblue, line_width, curve_antialised)
+		draw_line(Vector2(0,0), to_position, Color.white, line_width, curve_antialised)
 		return
 	if broken:
 		draw_line(Vector2(0,0), to_position, Color.darkgray, line_width, curve_antialised)
@@ -62,16 +99,18 @@ func _draw():
 func make(from : City, to : City, _size : int):
 	from_city = from
 	to_city = to
-	size = _size
-	line_width = size / 100.0
+	self.size = _size
 	var p1 = to.position
 	position = from.position
 	if (p1 - position).length_squared() < 0:
 		position = p1
 		p1 = from.position
 	to_position = Vector2((p1 - position).length(), 0)
+	# We can cheat here
+	scale.x = to_position.x - to.get_radius() - from.get_radius() + 6
 	rotation = (p1 - position).angle()
-	not_simulated = true
+	move_local_x(from.get_radius() - 3)
+	self.not_simulated = true
 	calbe_rect = Rect2(Vector2(0,-line_width), to_position+Vector2(0,2*line_width))
 	notify_city_connection(size)
 	update()
@@ -86,22 +125,21 @@ func upgrade(to_size : int) -> int:
 	var upgrade_cost = get_upgrade_costs(to_size)
 	notify_city_connection(to_size - size)
 	self.size = to_size
-	not_simulated = true
+	self.not_simulated = true
 	update()
 	return upgrade_cost
 
 
 func notify_city_connection(gain : int):
-	printt(size, gain)
-	if from_city.coverage < 1:
+	if from_city.get_est_coverage() < 1:
 		from_city.est_connected_inhabitants += gain
 	else:
 		to_city.est_connected_inhabitants += gain
 
 
 func repair() -> int:
-	broken = false
-	not_simulated = true
+	self.broken = false
+	self.not_simulated = true
 	notify_city_connection(size)
 	update()
 	return get_build_costs() / 2
@@ -115,7 +153,7 @@ func get_upgrade_costs(to_size) -> int:
 
 
 static func calc_line_width(size : int) -> float:
-	return size / 100.0
+	return CableSize[size]
 
 
 static func calc_usage_color(workload : int, size : int) -> Color:
@@ -201,6 +239,8 @@ static func get_maintenance_cost(size : int) -> int:
 
 func set_broken(_broken := true):
 	broken = _broken
+	(material as ShaderMaterial).set_shader_param("broken", broken)
+	particles.emitting = !broken
 	update()
 
 func get_max_workload() -> int:
@@ -221,13 +261,32 @@ func on_line(point : Vector2) -> bool:
 
 func _set_size(val : int):
 	size = val
-	line_width = size / 100.0
+	var ol = line_width
+	line_width = calc_line_width(val)
+	(particles.process_material as ParticlesMaterial).scale = ParticleSize[val]
+	scale.y += line_width - ol
+	
+	# Update Usage
 	self.workload = workload
 
 
 func _set_detail(val : float):
 	detail = val
 	update()
+
+
+func _set_flipped_flow(val: bool):
+	if val == flipped_flow:
+		return
+	if val:
+		particles.position.x = 1
+		particles.rotation_degrees = 180
+		flipped_flow = true
+		return
+	particles.position.x = 0
+	particles.rotation = 0
+	flipped_flow = false
+
 
 func _set_color(val : Color):
 	color = val
@@ -242,8 +301,20 @@ func _set_antialised(val : bool):
 	update()
 
 
+func _set_simulated(val: bool):
+	not_simulated = val
+	particles.emitting = !val
+
+
 func _set_workload(val : int):
 	workload = val
-	not_simulated = false
+	self.not_simulated = false
+	var wl = workload/float(size)
+	if wl == 0:
+		particles.amount = 150 * wl if 150 * wl >= 1 else 2
+		particles.speed_scale = 0
+	else:
+		particles.amount = 150 * wl if 150 * wl >= 1 else 2
+		particles.speed_scale = 1.1-wl
 	color = calc_usage_color(val, size)
 	update()

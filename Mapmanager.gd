@@ -1,13 +1,14 @@
 class_name Mapmanager
 extends Node2D
 
-const DEBUG_HIGHEST_LEVEL := 11
+const DEBUG_HIGHEST_LEVEL := 13
 
 export var current_level := 1 setget _set_level
 
 var map : Map
 
-
+# On change: Update grid_snap in City.gd
+const snap_size := 64 / 4 # texture_size (background) / sub_rects
 
 func _ready():
 	if load_save():
@@ -35,9 +36,9 @@ func _process(_delta):
 
 func level_path() -> String:
 	match current_level:
-		1,2,3,4,5,6,7,8,9:
+		1,2,3,4,5,6,7,8,9,10:
 			return "res://maps/tutorial/tutorial%d.tscn" % current_level
-		10,11:
+		11,12,13:
 			return "res://maps/map%d.tscn" % current_level
 	return ""
 
