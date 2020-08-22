@@ -20,4 +20,6 @@ This repo uses [git lfs](https://git-lfs.github.com/)!
 4. Import project in Godot
 
 ## License
-See [LICENSE](LICENSE)
+[LICENSE](LICENSE) is applied to all files except third-party files:
+ * ui/coin.wav CC0
+ * Shader snippets where linked
